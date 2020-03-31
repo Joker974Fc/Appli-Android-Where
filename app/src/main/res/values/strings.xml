@@ -3,4 +3,9 @@
     <string name="home">Home</string>
     <string name="dashboard">Dashboard</string>
     <string name="favorite">Favorite</string>
+    <string name="un_magasin">Un Magasin</string>
+    <string name="un_produit">Un Produit</string>
+    <string name="je_recherche">JE RECHERCHE:</string>
+    <string name="saint_denis">Saint-Denis</string>
+    <string name="les_cirques">Les Cirques</string>
 </resources>
