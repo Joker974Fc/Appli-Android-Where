@@ -35,6 +35,7 @@ public class MainActivity2 extends AppCompatActivity {
         boutiques.add(new com.example.where.fragments.Boutique("boutique5",  "tomate,laitue,oignon","St Denis"));
         boutiques.add(new com.example.where.fragments.Boutique("boutique6", "tomate,laitue,oignon","St Denis"));
         boutiques.add(new Boutique("boutique7", "tomate,laitue,oignon","St Denis"));
+        boutiques.add(new Boutique("boutique7", "tomate,laitue,oignon","St Denis"));
 
         mAdapt = new BoutiqueAdapter(boutiques);
 
