@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:text="@string/un_magasin"
         android:textColor="#2196F3"
+        android:onClick="open"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"

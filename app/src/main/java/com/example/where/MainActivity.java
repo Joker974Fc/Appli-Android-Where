@@ -1,26 +1,21 @@
 package com.example.where;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.where.*;
-import com.example.where.fragments.Boutique;
-import com.example.where.fragments.BoutiqueAdapter;
 import com.example.where.fragments.DasboardFragment;
 import com.example.where.fragments.FavoriteFragment;
 import com.example.where.fragments.HomeFragment;
 //import com.bottomnavigationview.fragments.NotificationFragment;
 //import com.bottomnavigationview.fragments.SmsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,4 +57,9 @@ public class MainActivity extends AppCompatActivity {
                     return false;
                 }
             };
+
+    public void open(View v){
+        Intent activity2 = new Intent(MainActivity.this, MainActivity2.class);
+        startActivity(activity2);
+    }
 }

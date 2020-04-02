@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.where.fragments.Boutique;
@@ -13,16 +14,14 @@ import java.util.List;
 
 public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyViewHolder> {
 
-    private TextView name;
-    private TextView article;
-    private TextView city;
 
     List<Boutique> boutiques;
 
-    BoutiqueAdapter(List<Boutique> boutiques){
+    public BoutiqueAdapter(List<Boutique> boutiques){
         this.boutiques=boutiques;
     }
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -42,6 +41,10 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView name;
+        private TextView article;
+        private TextView city;
+
         MyViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.textView4);
