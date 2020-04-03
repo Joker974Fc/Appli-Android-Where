@@ -19,3 +19,5 @@ Une section 'favoris' qui permet la sauvegarde permanente du magasin ou du produ
 /!\ De manière idéale l'application devrait être utilisée avec une connexion base de données afin de récupérer Magasins et 
 Produits (qui pourraient eux-même être renseignés via une interface web par exemple).
 Ici nous créerons manuellement une liste prédéfinie de Magasins et Produits que nous utiliserons dans l'application.
+
+Ios aura une conexion base de donées.
