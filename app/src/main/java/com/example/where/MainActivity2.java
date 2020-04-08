@@ -1,6 +1,8 @@
 package com.example.where;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +11,7 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,9 @@ public class MainActivity2 extends AppCompatActivity {
     private List<Boutique> boutiques;
     private BoutiqueAdapter mAdapt;
     private List<Boutique> fav;
-    private List<Produit> prod;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,28 +35,19 @@ public class MainActivity2 extends AppCompatActivity {
 
         boutiques = new ArrayList<>();
 
-        boutiques.add(new Boutique("boutique1", "tomate,laitue,oignon","St Denis"));
-        boutiques.add(new Boutique("boutique2", "tomate, brède, haricot","St Denis"));
-        boutiques.add(new Boutique("boutique3", "pomme de terre, cerise","La Possession"));
-        boutiques.add(new Boutique("boutique4", "tomate,laitue,oignon","St Denis"));
-        boutiques.add(new Boutique("boutique5",  "tomate,laitue,oignon","St Denis"));
-        boutiques.add(new Boutique("boutique6", "tomate,laitue,oignon","St Denis"));
-        boutiques.add(new Boutique("boutique7", "tomate,laitue,oignon","St Denis"));
-        boutiques.add(new Boutique("boutique7", "tomate,laitue,oignon","St Denis"));
+        boutiques.add(new Boutique("boutique1", new String[]{"Tomate","Laitue"},"St Denis"));
+        boutiques.add(new Boutique("boutique2", new String[]{"Tomate","Oignon"},"St Denis"));
+        boutiques.add(new Boutique("boutique3", new String[]{"Tomate","Pomme de terre"},"La Possession"));
+        boutiques.add(new Boutique("boutique4", new String[]{"Tomate","Ail"},"St Denis"));
+        boutiques.add(new Boutique("boutique5",new String[]{"Tomate","Laitue"},"St Denis"));
+        boutiques.add(new Boutique("boutique6", new String[]{"Tomate","Carotte"},"St Denis"));
+        boutiques.add(new Boutique("boutique7",new String[]{"Tomate","Laitue"},"St Denis"));
+        boutiques.add(new Boutique("boutique8",new String[]{"Tomate","Navet"},"St Denis"));
 
         mAdapt = new BoutiqueAdapter(boutiques);
 
         mRecycle.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         mRecycle.setAdapter(mAdapt);
-
-        prod = new ArrayList<>();
-
-        prod.add(new Produit("Tomate",true,"T"));
-        prod.add(new Produit("Laitue",true,"L"));
-        prod.add(new Produit("Carote",true,"C"));
-        prod.add(new Produit("Oignon",true,"Oi"));
-        prod.add(new Produit("Navet",true,"N"));
-
 
 
 
@@ -60,7 +56,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
-    @Override
+    /*@Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         getMenuInflater().inflate(R.menu.context, menu);
@@ -78,6 +74,13 @@ public class MainActivity2 extends AppCompatActivity {
                 return true;
         }
         return super.onContextItemSelected(item);
+    }*/
+
+    public void openFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 

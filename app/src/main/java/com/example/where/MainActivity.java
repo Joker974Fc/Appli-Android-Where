@@ -9,17 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.where.fragments.BoutiqueFragment;
 import com.example.where.fragments.DasboardFragment;
 import com.example.where.fragments.FavoriteFragment;
 import com.example.where.fragments.HomeFragment;
+import com.example.where.fragments.ProduitFtagment;
 //import com.bottomnavigationview.fragments.NotificationFragment;
 //import com.bottomnavigationview.fragments.SmsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigation;
+
 
 
     @Override
@@ -48,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
                             openFragment(HomeFragment.newInstance("", ""));
                             return true;
                         case R.id.navigation_dash:
-                            openFragment(DasboardFragment.newInstance("", ""));
+                            //openFragment(DasboardFragment.newInstance("", ""));
+                            Intent activity2 = new Intent(MainActivity.this, MainActivity2.class);
+                            startActivity(activity2);
                             return true;
                         case R.id.navigation_notif:
                             openFragment(FavoriteFragment.newInstance("", ""));
@@ -59,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
             };
 
     public void open(View v){
-        Intent activity2 = new Intent(MainActivity.this, MainActivity2.class);
-        startActivity(activity2);
+        openFragment(BoutiqueFragment.newInstance("", ""));
+    }
+
+    public void prod(View view) {
+        openFragment(ProduitFtagment.newInstance("", ""));
     }
 }
