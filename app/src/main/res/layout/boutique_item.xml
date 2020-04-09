@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" android:orientation="vertical"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="20dp"
+    >
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -18,7 +20,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="boutique chinois" />
-    
+
+
 
 
     <TextView
@@ -35,13 +38,18 @@
         android:gravity="center"
         android:text="Cilaos" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+    <Button
+        android:id="@+id/toggleButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/caddy" />
-
+        android:background="@drawable/ic_favorite_black_24dp"
+        android:checked="true"
+        android:onClick="fav"
+        android:text=""
+        android:textColor="#00FFFFFF"
+        android:textOff="@string/add_favorite"
+        android:textOn="@string/favorite" />
 
 
 </LinearLayout>

@@ -1,9 +1,17 @@
 package com.example.where;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,18 +34,24 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigation;
 
+    private Button fav1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         openFragment(HomeFragment.newInstance("", ""));
+        fav1=findViewById(R.id.toggleButton);
+
 
 
     }
+
+
 
     public void openFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -72,5 +86,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void prod(View view) {
         openFragment(ProduitFtagment.newInstance("", ""));
+    }
+
+    public void fav(View view) {
+        fav1.setBackground(Drawable.createFromPath("@drawable/ic_favorite_red_24dp"));
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.act_fav:
+                // do stuff, like showing settings fragment
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item); // important line
     }
 }

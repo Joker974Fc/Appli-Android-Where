@@ -1,9 +1,17 @@
 package com.example.where.fragments;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ToggleButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -20,6 +28,7 @@ public class BoutiqueFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
 
     private RecyclerView mRecycle;
     private List<Boutique> boutiques;
@@ -43,9 +52,13 @@ public class BoutiqueFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_boutique, container, false);
 
-        mRecycle=(RecyclerView)view.findViewById(R.id.recycle);
+
+
+        mRecycle= view.findViewById(R.id.recycle);
 
         boutiques = new ArrayList<>();
 
@@ -63,6 +76,36 @@ public class BoutiqueFragment extends Fragment {
         mRecycle.setLayoutManager(new GridLayoutManager(getContext(),2));
         mRecycle.setAdapter(mAdapt);
 
+        registerForContextMenu(mRecycle);
+
+
+
         return view;
     }
+
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.context, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.act_fav:
+                // do stuff
+                return true;
+
+            case R.id.action_delete:
+                // do more stuff
+                return true;
+        }
+
+        return false;
+    }
+
+
+
 }

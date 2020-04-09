@@ -25,6 +25,8 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.boutique_item,parent,false);
         return new MyViewHolder(view);
+
+
     }
 
     @Override
@@ -38,7 +40,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
     }
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name;
         private TextView article;
         private TextView city;
@@ -48,12 +50,18 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
             name = view.findViewById(R.id.textView4);
             article = view.findViewById(R.id.textView5);
             city = view.findViewById(R.id.textView6);
+            itemView.setOnClickListener(this);
         }
 
         void display(Boutique boutique) {
             name.setText(boutique.getName());
             article.setText(boutique.getarticle());
             city.setText(boutique.getCity());
+
+        }
+
+        @Override
+        public void onClick(View v) {
 
         }
     }
