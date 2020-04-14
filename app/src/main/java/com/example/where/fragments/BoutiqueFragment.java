@@ -3,6 +3,7 @@ package com.example.where.fragments;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,11 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.where.ContextMenuRecyclerView;
 
 import com.example.where.Boutique;
 import com.example.where.BoutiqueAdapter;
@@ -23,6 +28,8 @@ import com.example.where.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class BoutiqueFragment extends Fragment {
 
@@ -33,7 +40,7 @@ public class BoutiqueFragment extends Fragment {
     private RecyclerView mRecycle;
     private List<Boutique> boutiques;
     private BoutiqueAdapter mAdapt;
-    private List<Boutique> fav;
+    public List<Boutique> fav;
 
     public BoutiqueFragment(){
 
@@ -58,7 +65,8 @@ public class BoutiqueFragment extends Fragment {
 
 
 
-        mRecycle= view.findViewById(R.id.recycle);
+        mRecycle= view.findViewById(R.id.recycle1);
+        registerForContextMenu(mRecycle);
 
         boutiques = new ArrayList<>();
 
@@ -73,6 +81,9 @@ public class BoutiqueFragment extends Fragment {
 
         mAdapt = new BoutiqueAdapter(boutiques);
 
+        fav=new ArrayList<>();
+
+
         mRecycle.setLayoutManager(new GridLayoutManager(getContext(),2));
         mRecycle.setAdapter(mAdapt);
 
@@ -83,9 +94,35 @@ public class BoutiqueFragment extends Fragment {
         return view;
     }
 
-
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mRecycle = view.findViewById(R.id.recycle1);
+        registerForContextMenu(mRecycle);
+    }
 
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        // inflate menu
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.context, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        return super.onContextItemSelected(item);
+        // handle menu item here
+    }
+
+
+
+
+
+
+
+
+   /* @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.context, menu);
     }
@@ -104,7 +141,7 @@ public class BoutiqueFragment extends Fragment {
         }
 
         return false;
-    }
+    }*/
 
 
 
