@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -30,11 +31,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
+import static com.example.where.R.drawable.ic_favorite_red_24dp;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigation;
 
-    private Button fav1;
+    private ImageButton fav1;
+
+    DataBaseHelp myDb;
 
 
     @Override
@@ -44,8 +49,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        //fav1=findViewById(R.id.imageButton2);
+
+        myDb = new DataBaseHelp(this);
+
         openFragment(HomeFragment.newInstance("", ""));
-        fav1=findViewById(R.id.toggleButton);
+        //fav1=findViewById(R.id.toggleButton);
+
+
 
 
 
@@ -89,7 +100,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fav(View view) {
-        fav1.setBackground(Drawable.createFromPath("@drawable/ic_favorite_red_24dp"));
+      //fav1.setBackgroundResource(R.drawable.fav);
+        //fav1.setBackground(ic_favorite_red_24dp);
+
+
 
     }
 
