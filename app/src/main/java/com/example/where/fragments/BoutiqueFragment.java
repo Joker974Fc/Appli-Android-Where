@@ -1,6 +1,7 @@
 package com.example.where.fragments;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,7 @@ import com.example.where.ContextMenuRecyclerView;
 
 import com.example.where.Boutique;
 import com.example.where.BoutiqueAdapter;
+import com.example.where.DataBaseOpenhelp;
 import com.example.where.R;
 
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ public class BoutiqueFragment extends Fragment {
     private List<Boutique> boutiques;
     private BoutiqueAdapter mAdapt;
     public List<Boutique> fav;
+    private DataBaseOpenhelp data;
 
     public BoutiqueFragment(){
 
@@ -64,23 +67,26 @@ public class BoutiqueFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_boutique, container, false);
 
 
+        //init dataBase
+        data = new DataBaseOpenhelp(getActivity());
+
+
 
         mRecycle= view.findViewById(R.id.recycle1);
         registerForContextMenu(mRecycle);
 
-        boutiques = new ArrayList<>();
+        //boutiques = new ArrayList<>();
 
-        boutiques.add(new Boutique("boutique1", new String[]{"Tomate","Laitue"},"St Denis"));
+       /* boutiques.add(new Boutique("boutique1", new String[]{"Tomate","Laitue"},"St Denis"));
         boutiques.add(new Boutique("boutique2", new String[]{"Tomate","Oignon"},"St Denis"));
         boutiques.add(new Boutique("boutique3", new String[]{"Tomate","Pomme de terre"},"La Possession"));
         boutiques.add(new Boutique("boutique4", new String[]{"Tomate","Ail"},"St Denis"));
         boutiques.add(new Boutique("boutique5",new String[]{"Tomate","Laitue"},"St Denis"));
         boutiques.add(new Boutique("boutique6", new String[]{"Tomate","Carotte"},"St Denis"));
         boutiques.add(new Boutique("boutique7",new String[]{"Tomate","Laitue"},"St Denis"));
-        boutiques.add(new Boutique("boutique8",new String[]{"Tomate","Navet"},"St Denis"));
+        boutiques.add(new Boutique("boutique8",new String[]{"Tomate","Navet"},"St Denis"));*/
 
-        mAdapt = new BoutiqueAdapter(boutiques);
-
+        mAdapt = new BoutiqueAdapter(getActivity().getApplicationContext(),data.getBoutique());
         fav=new ArrayList<>();
 
 
