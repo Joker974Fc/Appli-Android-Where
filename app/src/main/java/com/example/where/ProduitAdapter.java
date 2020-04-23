@@ -40,10 +40,11 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
     }
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name;
-        private ToggleButton stock;
+        //private ToggleButton stock;
         private ImageView img;
+
 
 
         MyViewHolder(View view) {
@@ -51,12 +52,18 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
             name = view.findViewById(R.id.textView7);
             //stock = view.findViewById(R.id.toggleButton2);
             img = view.findViewById(R.id.imageView6);
+            itemView.setOnClickListener(this);
         }
 
         void display(Produit produits) {
             name.setText(produits.getName());
             //stock.setChecked(produits.getStock());
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            
         }
     }
 

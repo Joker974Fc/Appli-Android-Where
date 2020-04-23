@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton fav1;
 
-    DataBaseHelp myDb;
+    //DataBaseHelp myDb;
 
 
     @Override
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         //fav1=findViewById(R.id.imageButton2);
 
-        myDb = new DataBaseHelp(this);
+       // myDb = new DataBaseHelp(this);
 
         openFragment(HomeFragment.newInstance("", ""));
         //fav1=findViewById(R.id.toggleButton);
@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         case R.id.navigation_dash:
                             //openFragment(DasboardFragment.newInstance("", ""));
-                            Intent activity2 = new Intent(MainActivity.this, MainActivity2.class);
-                            startActivity(activity2);
+                            //Intent activity2 = new Intent(MainActivity.this, MainActivity2.class);
+                            //startActivity(activity2);
                             return true;
                         case R.id.navigation_notif:
                             openFragment(FavoriteFragment.newInstance("", ""));

@@ -1,5 +1,6 @@
 package com.example.where;
 
+import android.content.Context;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,16 +12,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.where.fragments.BoutiqueFragment;
+
 import java.util.List;
 
 public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyViewHolder> {
 
+    public Context context;
+    private List<Boutique> boutiques;
 
-    List<Boutique> boutiques;
-
-    public BoutiqueAdapter(List<Boutique> boutiques){
+    public BoutiqueAdapter(Context context,List<Boutique> boutiques){
         this.boutiques=boutiques;
+        this.context=context;
     }
+
 
     @NonNull
     @Override
@@ -34,7 +39,11 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position){
-        holder.display(boutiques.get(position));
+        //holder.display(boutiques.get(position));
+        holder.name.setText(boutiques.get(position).getName());
+        holder.article.setText(boutiques.get(position).getarticle());
+        holder.city.setText(boutiques.get(position).getCity());
+
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

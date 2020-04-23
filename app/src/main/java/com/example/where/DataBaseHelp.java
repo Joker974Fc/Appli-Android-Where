@@ -1,4 +1,4 @@
-package com.example.where;
+/*package com.example.where;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,7 +22,7 @@ public class DataBaseHelp extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,PRODUCT TEXT,CITY TEXT)");
+        db.execSQL("create table " + TABLE_NAME +" (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,PRODUCT TEXT,CITY TEXT)");
 
     }
 
@@ -32,4 +32,4 @@ public class DataBaseHelp extends SQLiteOpenHelper {
         onCreate(db);
 
     }
-}
+}*/
