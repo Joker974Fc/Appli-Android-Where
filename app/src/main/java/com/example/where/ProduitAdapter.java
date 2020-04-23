@@ -1,5 +1,6 @@
 package com.example.where;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,11 @@ import java.util.List;
 
 public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHolder> {
     List<Produit> produits;
+    public Context context;
 
-    public ProduitAdapter(List<Produit> produits){
+    public ProduitAdapter(Context context, List<Produit> produits){
         this.produits=produits;
+        this.context=context;
     }
 
     @Override

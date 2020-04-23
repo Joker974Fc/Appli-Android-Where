@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.where.DataBaseOpenhelp;
 import com.example.where.Produit;
 import com.example.where.ProduitAdapter;
 import com.example.where.R;
@@ -26,6 +26,7 @@ public class ProduitFtagment extends Fragment {
     private List<Produit> prod;
     private ProduitAdapter pAdapt;
     private RecyclerView mRecycle;
+    private DataBaseOpenhelp data;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -71,15 +72,18 @@ public class ProduitFtagment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_produit, container, false);
 
+        //init dataBase
+        data = new DataBaseOpenhelp(getActivity());
+
         mRecycle=(RecyclerView)view.findViewById(R.id.recycle);
 
-        prod = new ArrayList<>();
+       /* prod = new ArrayList<>();
 
-        prod.add(new Produit("Tomate",false,"img"));
-        prod.add(new Produit("Laitue",true,"img"));
-        prod.add(new Produit("Carote",false,"img"));
+        prod.add(new Produit(id, "Tomate",false,"img"));
+        prod.add(new Produit(id, "Laitue",true,"img"));
+        prod.add(new Produit(id, "Carote",false,"img"));*/
 
-        pAdapt = new ProduitAdapter(prod);
+        pAdapt = new ProduitAdapter(getActivity().getApplicationContext(),data.getProduit());
 
         mRecycle.setLayoutManager(new GridLayoutManager(getActivity(),2));
         mRecycle.setAdapter(pAdapt);

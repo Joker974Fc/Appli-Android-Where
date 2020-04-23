@@ -45,5 +45,30 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
 
     }
 
+    //get all produit
+    public List<Produit> getProduit(){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect = {"NAME"};
+        String tableName="produit";
+
+        qb.setTables(tableName);
+        qb.setDistinct(true);
+        Cursor c = qb.query(db,sqlSelect,null,null,null,null,null);
+        List<Produit> result = new ArrayList<>();
+        if (c.moveToFirst()){
+            do {
+                Produit produit = new Produit();
+                //produit.setId(c.getInt(c.getColumnIndex("ID")));
+                produit.setName(c.getString(c.getColumnIndex("NAME")));
+
+                result.add(produit);
+            }while (c.moveToNext());
+        }
+        return result;
+
+    }
+
 
 }
