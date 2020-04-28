@@ -1,6 +1,9 @@
 package com.example.where.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.PopupMenu;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -40,12 +45,16 @@ public class BoutiqueFragment extends Fragment {
 
 
     private RecyclerView mRecycle;
-    private List<Boutique> boutiques;
+    private List<Boutique> boutique;
     private BoutiqueAdapter mAdapt;
     public List<Boutique> fav;
     private DataBaseOpenhelp data;
+    private TextView nom;
+    private TextView prod;
+    private TextView city;
 
-    public BoutiqueFragment(){
+
+    public BoutiqueFragment() {
 
     }
 
@@ -65,17 +74,21 @@ public class BoutiqueFragment extends Fragment {
 
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_boutique, container, false);
+        nom = view.findViewById(R.id.textView4);
+        prod = view.findViewById(R.id.textView5);
+        city = view.findViewById(R.id.imageView6);
 
 
         //init dataBase
         data = new DataBaseOpenhelp(getActivity());
 
 
-
-        mRecycle= view.findViewById(R.id.recycle1);
+        mRecycle = view.findViewById(R.id.recycle1);
         registerForContextMenu(mRecycle);
 
-        //boutiques = new ArrayList<>();
+         boutique = new ArrayList<>();
+         boutique=  data.getBoutique();
+
 
        /* boutiques.add(new Boutique("boutique1", new String[]{"Tomate","Laitue"},"St Denis"));
         boutiques.add(new Boutique("boutique2", new String[]{"Tomate","Oignon"},"St Denis"));
@@ -86,15 +99,14 @@ public class BoutiqueFragment extends Fragment {
         boutiques.add(new Boutique("boutique7",new String[]{"Tomate","Laitue"},"St Denis"));
         boutiques.add(new Boutique("boutique8",new String[]{"Tomate","Navet"},"St Denis"));*/
 
-        mAdapt = new BoutiqueAdapter(getActivity().getApplicationContext(),data.getBoutique());
-        fav=new ArrayList<>();
+        mAdapt = new BoutiqueAdapter(getActivity(), data.getBoutique());
+        fav = new ArrayList<>();
 
 
-        mRecycle.setLayoutManager(new GridLayoutManager(getContext(),2));
+        mRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
         mRecycle.setAdapter(mAdapt);
 
         registerForContextMenu(mRecycle);
-
 
 
         return view;
@@ -108,47 +120,37 @@ public class BoutiqueFragment extends Fragment {
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        // inflate menu
-        MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.context, menu);
-    }
-
-    @Override
     public boolean onContextItemSelected(MenuItem item) {
-        return super.onContextItemSelected(item);
-        // handle menu item here
-    }
+        int position = item.getOrder();
+        String name = boutique.get(position).getName();
+        String prod = boutique.get(position).getarticle();
+        String city = boutique.get(position).getCity();
 
 
 
-
-
-
-
-
-   /* @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.context, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
+        // Boutique boutique=bout;
+        // do something!
+        //return super.onContextItemSelected(item);
+        switch (item.getItemId()) {
             case R.id.act_fav:
-                // do stuff
-                return true;
 
+                //data.insertFav(boutiques.get(position).getName(), boutiques.get(position).getarticle(), boutiques.get(position).getCity());
+                data.insertFav(name,prod,city);
+
+
+
+                return true;
             case R.id.action_delete:
-                // do more stuff
+                Log.i("ContextMenu", "Item 1b was chosen");
                 return true;
         }
-
-        return false;
-    }*/
-
+        return super.onContextItemSelected(item);
+    }
 
 
 }
+    
+
+
+
+

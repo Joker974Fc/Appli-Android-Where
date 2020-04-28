@@ -1,29 +1,24 @@
 package com.example.where;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.where.fragments.BoutiqueFragment;
-
 import java.util.List;
 
-public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyViewHolder> {
+public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
 
     public Context context;
     private List<Boutique> boutiques;
 
-    public BoutiqueAdapter(Context context,List<Boutique> boutiques){
+    public FavAdapter(Context context, List<Boutique> boutiques){
         this.boutiques=boutiques;
         this.context=context;
     }
@@ -39,16 +34,6 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
     }
 
-    private int position;
-
-    public  int getPosition() {
-        return position;
-    }
-
-    private void setPosition(int position) {
-        this.position = position;
-    }
-
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position){
         //holder.display(boutiques.get(position));
@@ -56,10 +41,11 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
         holder.article.setText(boutiques.get(position).getarticle());
         holder.city.setText(boutiques.get(position).getCity());
 
+
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                setPosition(holder.getAdapterPosition());
+                setPosition(holder.getPosition());
                 return false;
             }
         });
@@ -73,7 +59,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
     //public class Favorite
 
 
-    static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         private TextView name;
         private TextView article;
         private TextView city;
@@ -84,12 +70,9 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
             article = view.findViewById(R.id.textView5);
             city = view.findViewById(R.id.textView6);
            // itemView.setOnClickListener(this);
-            view.setOnCreateContextMenuListener(this);
 
 
         }
-
-
 
         void display(Boutique boutique) {
             name.setText(boutique.getName());
@@ -102,22 +85,12 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            /*menu.add(Menu.NONE, R.id.act_fav,
+            menu.add(Menu.NONE, R.id.act_fav,
                     Menu.NONE, R.string.add_favorite);
             menu.add(Menu.NONE, R.id.action_delete,
-                    Menu.NONE, R.string.je_recherche);*/
-            menu.setHeaderTitle("Select The Action");
-            menu.add(0, R.id.act_fav, getAdapterPosition(), "add fav");
-            menu.add(0, R.id.action_delete, getAdapterPosition(), "action 2");
+                    Menu.NONE, R.string.je_recherche);
 
         }
-
-
-
-
-
-
-
 
 
 
@@ -125,7 +98,15 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
 
 
+    private int position;
 
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 
 
 

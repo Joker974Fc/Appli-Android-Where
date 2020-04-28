@@ -6,10 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.where.Boutique;
 import com.example.where.BoutiqueAdapter;
+import com.example.where.DataBaseOpenhelp;
+import com.example.where.Fav;
+import com.example.where.FavAdapter;
 import com.example.where.R;
 
 import java.util.List;
@@ -29,9 +33,10 @@ public class FavoriteFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private RecyclerView mRecycle;
-    private List<Boutique> boutiques;
-    private BoutiqueAdapter mAdapt;
+    private RecyclerView fRecycle;
+    private List<Fav> boutiques;
+    private FavAdapter fAdapt;
+    private DataBaseOpenhelp data;
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -68,6 +73,22 @@ public class FavoriteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
+        View view = inflater.inflate(R.layout.fragment_fav, container, false);
+
+
+
+        //init dataBase
+        data = new DataBaseOpenhelp(getActivity());
+
+        fRecycle= view.findViewById(R.id.recyclef);
+
+
+        fAdapt = new FavAdapter(getActivity().getApplicationContext(),data.getFav());
+
+        fRecycle.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        fRecycle.setAdapter(fAdapt);
+
+
+        return view;
     }
 }
