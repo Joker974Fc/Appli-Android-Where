@@ -108,7 +108,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
                     Menu.NONE, R.string.je_recherche);*/
             menu.setHeaderTitle("Select The Action");
             menu.add(0, R.id.act_fav, getAdapterPosition(), "add fav");
-            menu.add(0, R.id.action_delete, getAdapterPosition(), "action 2");
+            menu.add(0, R.id.action_delete, getAdapterPosition(), "delte fave");
 
         }
 

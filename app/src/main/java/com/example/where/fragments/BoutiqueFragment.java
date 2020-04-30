@@ -49,9 +49,7 @@ public class BoutiqueFragment extends Fragment {
     private BoutiqueAdapter mAdapt;
     public List<Boutique> fav;
     private DataBaseOpenhelp data;
-    private TextView nom;
-    private TextView prod;
-    private TextView city;
+
 
 
     public BoutiqueFragment() {
@@ -74,9 +72,6 @@ public class BoutiqueFragment extends Fragment {
 
         setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_boutique, container, false);
-        nom = view.findViewById(R.id.textView4);
-        prod = view.findViewById(R.id.textView5);
-        city = view.findViewById(R.id.imageView6);
 
 
         //init dataBase
@@ -133,23 +128,17 @@ public class BoutiqueFragment extends Fragment {
         //return super.onContextItemSelected(item);
         switch (item.getItemId()) {
             case R.id.act_fav:
-
-                //data.insertFav(boutiques.get(position).getName(), boutiques.get(position).getarticle(), boutiques.get(position).getCity());
                 data.insertFav(name,prod,city);
-
-
-
                 return true;
             case R.id.action_delete:
-                Log.i("ContextMenu", "Item 1b was chosen");
-                return true;
+               data.deletFav(name);
         }
         return super.onContextItemSelected(item);
     }
 
 
 }
-    
+
 
 
 
