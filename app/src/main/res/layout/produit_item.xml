@@ -8,6 +8,8 @@
     android:layout_marginLeft="20dp"
     android:layout_marginTop="10dp">
 
+
+
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="150dp"
@@ -21,5 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Tomate"
         android:gravity="center"/>
+
+
 
 </LinearLayout>

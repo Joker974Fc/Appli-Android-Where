@@ -1,4 +1,4 @@
-package com.example.where;
+package com.example.where.object;
 
 import java.util.Arrays;
 

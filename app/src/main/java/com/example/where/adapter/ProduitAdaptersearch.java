@@ -1,4 +1,4 @@
-package com.example.where;
+package com.example.where.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,18 +6,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.where.R;
+import com.example.where.object.Produit;
 
 import java.util.List;
 
-public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHolder> {
+public class ProduitAdaptersearch extends RecyclerView.Adapter<ProduitAdaptersearch.MyViewHolder> {
     List<Produit> produits;
     public Context context;
+    private OnItemClickListener mList;
 
-    public ProduitAdapter(Context context, List<Produit> produits){
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mList=listener;
+    }
+
+    public ProduitAdaptersearch(Context context, List<Produit> produits){
         this.produits=produits;
         this.context=context;
     }
@@ -26,12 +36,24 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.produit_item,parent,false);
-        return new  ProduitAdapter.MyViewHolder(view);
+        return new  ProduitAdaptersearch.MyViewHolder(view,mList);
     }
 
+    private int position;
+
+    public  int getPosition() {
+        return position;
+    }
+
+    private void setPosition(int position) {
+        this.position = position;
+    }
+
+
     @Override
-    public void onBindViewHolder(ProduitAdapter.MyViewHolder holder, int position){
+    public void onBindViewHolder(final ProduitAdaptersearch.MyViewHolder holder, final int position){
         holder.display(produits.get(position));
+
     }
 
     @Override
@@ -47,12 +69,23 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
 
 
 
-        MyViewHolder(View view) {
+        MyViewHolder(View view, final OnItemClickListener listener) {
             super(view);
             name = view.findViewById(R.id.textView7);
             //stock = view.findViewById(R.id.toggleButton2);
             img = view.findViewById(R.id.imageView6);
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener!=null){
+                        int pos = getAdapterPosition();
+                        if(pos!=RecyclerView.NO_POSITION){
+                            listener.onItemClick(pos);
+                        }
+                    }
+
+                }
+            });
         }
 
         void display(Produit produits) {
@@ -67,13 +100,5 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
         }
     }
 
-    private int position;
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
 }

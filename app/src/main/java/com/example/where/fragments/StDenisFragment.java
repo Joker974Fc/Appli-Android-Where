@@ -8,19 +8,18 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.where.object.Boutique;
+import com.example.where.R;
 import com.example.where.adapter.BoutiqueAdapter;
 import com.example.where.dataBases.DataBaseOpenhelp;
-import com.example.where.R;
+import com.example.where.object.Boutique;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoutiqueFragment extends Fragment {
+public class StDenisFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -39,13 +38,13 @@ public class BoutiqueFragment extends Fragment {
 
 
 
-    public BoutiqueFragment() {
+    public StDenisFragment() {
 
     }
 
 
-    public static BoutiqueFragment newInstance(String param1, String param2) {
-        BoutiqueFragment fragment = new BoutiqueFragment();
+    public static StDenisFragment newInstance(String param1, String param2) {
+        StDenisFragment fragment = new StDenisFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,17 +72,7 @@ public class BoutiqueFragment extends Fragment {
          boutique=  data.getBoutique();
 
 
-       /* boutiques.add(new Boutique("boutique1", new String[]{"Tomate","Laitue"},"St Denis"));
-        boutiques.add(new Boutique("boutique2", new String[]{"Tomate","Oignon"},"St Denis"));
-        boutiques.add(new Boutique("boutique3", new String[]{"Tomate","Pomme de terre"},"La Possession"));
-        boutiques.add(new Boutique("boutique4", new String[]{"Tomate","Ail"},"St Denis"));
-        boutiques.add(new Boutique("boutique5",new String[]{"Tomate","Laitue"},"St Denis"));
-        boutiques.add(new Boutique("boutique6", new String[]{"Tomate","Carotte"},"St Denis"));
-        boutiques.add(new Boutique("boutique7",new String[]{"Tomate","Laitue"},"St Denis"));
-        boutiques.add(new Boutique("boutique8",new String[]{"Tomate","Navet"},"St Denis"));*/
-
-        mAdapt = new BoutiqueAdapter(getActivity(), data.getBoutique());
-        //mAdapt2 = new BoutiqueAdapter(getActivity(), data.getBoutVille("Saint Denis"));
+        mAdapt2 = new BoutiqueAdapter(getActivity(), data.getBoutVille("Saint Denis"));
         fav = new ArrayList<>();
 
 
@@ -91,7 +80,7 @@ public class BoutiqueFragment extends Fragment {
         mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-        mRecycle.setAdapter(mAdapt);
+        mRecycle.setAdapter(mAdapt2);
 
 
 

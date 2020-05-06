@@ -7,13 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.where.Boutique;
-import com.example.where.BoutiqueAdapter;
-import com.example.where.DataBaseOpenhelp;
-import com.example.where.Fav;
-import com.example.where.FavAdapter;
+import com.example.where.dataBases.DataBaseOpenhelp;
+import com.example.where.object.Fav;
+import com.example.where.adapter.FavAdapter;
 import com.example.where.R;
 
 import java.util.List;
@@ -85,7 +84,7 @@ public class FavoriteFragment extends Fragment {
 
         fAdapt = new FavAdapter(getActivity().getApplicationContext(),data.getFav());
 
-        fRecycle.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        fRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
         fRecycle.setAdapter(fAdapt);
 
 

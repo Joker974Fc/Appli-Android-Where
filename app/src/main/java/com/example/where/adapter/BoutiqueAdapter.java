@@ -1,20 +1,17 @@
-package com.example.where;
+package com.example.where.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.where.fragments.BoutiqueFragment;
+import com.example.where.object.Boutique;
+import com.example.where.R;
 
 import java.util.List;
 

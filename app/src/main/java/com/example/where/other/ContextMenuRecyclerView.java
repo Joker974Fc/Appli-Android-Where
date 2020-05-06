@@ -1,4 +1,4 @@
-package com.example.where;
+package com.example.where.other;
 
 import android.content.Context;
 import android.view.ContextMenu;

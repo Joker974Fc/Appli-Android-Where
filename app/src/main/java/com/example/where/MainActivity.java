@@ -1,43 +1,38 @@
 package com.example.where;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.where.adapter.BoutiqueAdapter;
+import com.example.where.dataBases.DataBaseOpenhelp;
 import com.example.where.fragments.BoutiqueFragment;
-import com.example.where.fragments.DasboardFragment;
 import com.example.where.fragments.FavoriteFragment;
 import com.example.where.fragments.HomeFragment;
+import com.example.where.fragments.LaPossesionFragment;
+import com.example.where.fragments.LePortFragment;
 import com.example.where.fragments.ProduitFtagment;
 //import com.bottomnavigationview.fragments.NotificationFragment;
 //import com.bottomnavigationview.fragments.SmsFragment;
+import com.example.where.fragments.StDenisFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
-
-import static com.example.where.R.drawable.ic_favorite_red_24dp;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigation;
 
     private ImageButton fav1;
+    BoutiqueAdapter boutiqueAdapter;
+    DataBaseOpenhelp db;
+    RecyclerView recyclerView;
 
     //DataBaseHelp myDb;
 
@@ -50,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        recyclerView=findViewById(R.id.recycle1);
+        db=new DataBaseOpenhelp(this);
+        BoutiqueFragment fragment = new BoutiqueFragment();
+
         //fav1=findViewById(R.id.imageButton2);
 
        // myDb = new DataBaseHelp(this);
@@ -72,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    //ouvrir
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
             };
 
     public void open(View v){
+        BoutiqueFragment boutiqueFragment = new BoutiqueFragment();
+        boutiqueFragment.setM(1);
+
         openFragment(BoutiqueFragment.newInstance("", ""));
     }
 
@@ -100,13 +103,18 @@ public class MainActivity extends AppCompatActivity {
         openFragment(ProduitFtagment.newInstance("", ""));
     }
 
-    public void fav(View view) {
-      //fav1.setBackgroundResource(R.drawable.fav);
-        //fav1.setBackground(ic_favorite_red_24dp);
-
-
-
+    public void saintDenis(View v){
+        openFragment(StDenisFragment.newInstance("",""));
     }
+
+    public void laPoss(View view) {
+        openFragment(LaPossesionFragment.newInstance("",""));
+    }
+
+    public void LePort(View view) {
+        openFragment(LePortFragment.newInstance("",""));
+    }
+
 
 
 
@@ -121,4 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item); // important line
     }
+
+
+
 }

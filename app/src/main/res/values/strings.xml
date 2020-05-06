@@ -5,8 +5,10 @@
     <string name="favorite">Favorite</string>
     <string name="un_magasin">Un Magasin</string>
     <string name="un_produit">Un Produit</string>
-    <string name="je_recherche">JE RECHERCHE:</string>
+    <string name="je_recherche">JE CHERCHE:</string>
     <string name="saint_denis">Saint-Denis</string>
     <string name="les_cirques">Les Cirques</string>
     <string name="add_favorite">add favorite</string>
+    <string name="par_secteur">RECHERCHE PAR SECTEUR:</string>
+    <string name="search">Search</string>
 </resources>

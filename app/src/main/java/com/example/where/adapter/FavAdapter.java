@@ -1,4 +1,4 @@
-package com.example.where;
+package com.example.where.adapter;
 
 import android.content.Context;
 import android.view.ContextMenu;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.where.object.Boutique;
+import com.example.where.R;
 
 import java.util.List;
 

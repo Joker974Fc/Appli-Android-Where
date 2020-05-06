@@ -1,10 +1,13 @@
 package com.example.where;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.where.adapter.ProduitAdapter;
+import com.example.where.object.Boutique;
+import com.example.where.object.Produit;
 
 import java.util.ArrayList;
 import java.util.List;
