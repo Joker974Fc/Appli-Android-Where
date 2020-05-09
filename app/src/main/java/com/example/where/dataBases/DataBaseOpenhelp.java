@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
@@ -64,9 +66,39 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
         List<Produit> result = new ArrayList<>();
         if (c.moveToFirst()){
             do {
+
                 Produit produit = new Produit();
                 //produit.setId(c.getInt(c.getColumnIndex("ID")));
                 produit.setName(c.getString(c.getColumnIndex("NAME")));
+
+
+
+                result.add(produit);
+            }while (c.moveToNext());
+        }
+        return result;
+
+    }
+//Produits + image
+    public List<Produit> getProduit2(){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+
+        String tableName="produit";
+        String sql=("SELECT DISTINCT NAME,IMG FROM "+ tableName);
+        qb.setTables(tableName);
+        Cursor c = db.rawQuery(sql,null);
+        List<Produit> result = new ArrayList<>();
+        if (c.moveToFirst()){
+            do {
+                byte[]imageByte= c.getBlob(c.getColumnIndex("IMG"));
+                Bitmap image = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+                Produit produit = new Produit();
+                //produit.setId(c.getInt(c.getColumnIndex("ID")));
+                produit.setName(c.getString(c.getColumnIndex("NAME")));
+                produit.setImg(image);
+
 
                 result.add(produit);
             }while (c.moveToNext());
@@ -79,12 +111,12 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect = {"NAME"};
+
         String tableName="produit";
 
         qb.setTables(tableName);
-        qb.setDistinct(true);
-        Cursor c = qb.query(db,sqlSelect,null,null,null,null,null);
+        String sql=("SELECT NAME FROM "+ tableName+ " WHERE NAME IN (SELECT DISTINCT NAME FROM produit)");
+        Cursor c = db.rawQuery(sql,null);
         List<String> result = new ArrayList<>();
         if (c.moveToFirst()){
             do {
@@ -223,14 +255,49 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
         String colName="NAME";
 
         qb.setTables(tableName);
-        //Cursor c = db.rawQuery("SELECT * FROM "+ tableName+ " INNER JOIN "+ tableName2+ " ON "+colName2+ " = "+colName+ " WHERE "+colName3+ "= " +prod,null);
-        String sql=("SELECT DISTINCT * FROM "+ tableName+ " WHERE "+colName+"='"+prod+"'");
+        String sql=("SELECT DISTINCT * FROM "+ tableName+ " WHERE "+colName+"='"+prod+"'"+ " LIMIT 1");
         Cursor c = db.rawQuery(sql,null);
         List<Produit> result = new ArrayList<>();
         if (c.moveToFirst()){
             do {
                 Produit produit = new Produit();
                 produit.setName(c.getString(c.getColumnIndex("NAME")));
+
+                result.add(produit);
+            }while (c.moveToNext());
+        }
+        return result;
+
+    }
+
+    //produit d'un magasin
+    public List<Produit> getprobymag(long ID){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        String tableName="lboutique";
+        String tableName2="produit";
+        String colName2="BOUTID";
+        String colName="ID";
+        String colName3="NAME";
+
+
+        qb.setTables(tableName);
+
+        String sql=("SELECT  produit.NAME,produit.IMG,produit.DESC,produit.PRIX FROM "+ tableName2+ " INNER JOIN "+ tableName+ " ON "+tableName2+"."+colName2+ " = "+tableName+"."+colName+ " WHERE "+colName2+"='"+ID+"'");
+        Cursor c = db.rawQuery(sql,null);
+        List<Produit> result = new ArrayList<>();
+        if (c.moveToFirst()){
+            do {
+
+                byte[]imageByte= c.getBlob(c.getColumnIndex("IMG"));
+                Bitmap image = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+
+                Produit produit = new Produit();
+
+                produit.setName(c.getString(c.getColumnIndex("NAME")));
+                produit.setImg(image);
+                produit.setDescription(c.getString(c.getColumnIndex("DESC")));
+                produit.setPrix(c.getString(c.getColumnIndex("PRIX")));
 
                 result.add(produit);
             }while (c.moveToNext());

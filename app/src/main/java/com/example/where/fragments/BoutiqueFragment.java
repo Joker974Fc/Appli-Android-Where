@@ -2,6 +2,7 @@ package com.example.where.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.where.adapter.ProduitAdapter;
+import com.example.where.adapter.ProduitAdapter2;
 import com.example.where.object.Boutique;
 import com.example.where.adapter.BoutiqueAdapter;
 import com.example.where.dataBases.DataBaseOpenhelp;
@@ -73,15 +76,6 @@ public class BoutiqueFragment extends Fragment {
          boutique=  data.getBoutique();
 
 
-       /* boutiques.add(new Boutique("boutique1", new String[]{"Tomate","Laitue"},"St Denis"));
-        boutiques.add(new Boutique("boutique2", new String[]{"Tomate","Oignon"},"St Denis"));
-        boutiques.add(new Boutique("boutique3", new String[]{"Tomate","Pomme de terre"},"La Possession"));
-        boutiques.add(new Boutique("boutique4", new String[]{"Tomate","Ail"},"St Denis"));
-        boutiques.add(new Boutique("boutique5",new String[]{"Tomate","Laitue"},"St Denis"));
-        boutiques.add(new Boutique("boutique6", new String[]{"Tomate","Carotte"},"St Denis"));
-        boutiques.add(new Boutique("boutique7",new String[]{"Tomate","Laitue"},"St Denis"));
-        boutiques.add(new Boutique("boutique8",new String[]{"Tomate","Navet"},"St Denis"));*/
-
         mAdapt = new BoutiqueAdapter(getActivity(), data.getBoutique());
         //mAdapt2 = new BoutiqueAdapter(getActivity(), data.getBoutVille("Saint Denis"));
         fav = new ArrayList<>();
@@ -89,9 +83,17 @@ public class BoutiqueFragment extends Fragment {
 
 
         mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
         mRecycle.setAdapter(mAdapt);
+
+        mAdapt.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
+            @Override
+        public void onItemClick(int position) {
+            boutique.get(position);
+            ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
+            mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mRecycle.setAdapter(padap);
+        }
+    });
 
 
 
@@ -121,8 +123,6 @@ public class BoutiqueFragment extends Fragment {
         String prod = boutique.get(position).getarticle();
         String city = boutique.get(position).getCity();
 
-
-
         // Boutique boutique=bout;
         // do something!
         //return super.onContextItemSelected(item);
@@ -135,6 +135,8 @@ public class BoutiqueFragment extends Fragment {
         }
         return super.onContextItemSelected(item);
     }
+
+
 
 
 }

@@ -10,19 +10,19 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.where.R;
 import com.example.where.object.Boutique;
 import com.example.where.object.Produit;
-import com.example.where.R;
 
 import java.util.List;
 
-public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHolder> {
+public class ProduitAdapter2 extends RecyclerView.Adapter<ProduitAdapter2.MyViewHolder> {
     List<Produit> produits;
     public Context context;
     List<Boutique> boutiques;
     private OnItemClickListener mList;
 
-    public ProduitAdapter(FragmentActivity activity, List<Produit> produit) {
+    public ProduitAdapter2(FragmentActivity activity, List<Produit> produit) {
         this.context=activity;
         this.produits=produit;
     }
@@ -40,8 +40,8 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.produit_item,parent,false);
-        return new  ProduitAdapter.MyViewHolder(view,mList);
+        View view = layoutInflater.inflate(R.layout.produit_item2,parent,false);
+        return new  ProduitAdapter2.MyViewHolder(view,mList);
     }
 
     private int position;
@@ -56,7 +56,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
 
 
     @Override
-    public void onBindViewHolder(final ProduitAdapter.MyViewHolder holder, final int position){
+    public void onBindViewHolder(final ProduitAdapter2.MyViewHolder holder, final int position){
         holder.display(produits.get(position));
 
     }
@@ -71,6 +71,8 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
         private TextView name;
         //private ToggleButton stock;
         private ImageView img;
+        private TextView desc;
+        private TextView prix;
 
 
 
@@ -79,6 +81,8 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
             name = view.findViewById(R.id.textView7);
             //stock = view.findViewById(R.id.toggleButton2);
             img = view.findViewById(R.id.imageView6);
+            desc=view.findViewById(R.id.textViewd);
+            prix=view.findViewById(R.id.textp);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -97,6 +101,8 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
             name.setText(produits.getName());
             //stock.setChecked(produits.getStock());
             img.setImageBitmap(produits.getImg());
+            desc.setText(produits.getDescription());
+            prix.setText(produits.getPrix());
 
         }
 

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.where.object.Boutique;
@@ -19,10 +21,19 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
     public Context context;
     private List<Boutique> boutiques;
+    private OnItemClickListener mList;
 
-    public BoutiqueAdapter(Context context,List<Boutique> boutiques){
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public BoutiqueAdapter(FragmentActivity activity, List<Boutique> boutiques){
         this.boutiques=boutiques;
-        this.context=context;
+        this.context=activity;
+    }
+
+    public void setOnItemClickListener(BoutiqueAdapter.OnItemClickListener listener){
+        mList=listener;
     }
 
 
@@ -31,7 +42,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
     public MyViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.boutique_item,parent,false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view,mList);
 
 
     }
@@ -70,18 +81,30 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
     //public class Favorite
 
 
-    static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+    static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener,View.OnClickListener {
         private TextView name;
         private TextView article;
         private TextView city;
 
-        MyViewHolder(View view) {
+        MyViewHolder(View view, final BoutiqueAdapter.OnItemClickListener listener) {
             super(view);
             name = view.findViewById(R.id.textView4);
             article = view.findViewById(R.id.textView5);
             city = view.findViewById(R.id.textView6);
            // itemView.setOnClickListener(this);
             view.setOnCreateContextMenuListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener!=null){
+                        int pos = getAdapterPosition();
+                        if(pos!=RecyclerView.NO_POSITION){
+                            listener.onItemClick(pos);
+                        }
+                    }
+
+                }
+            });
 
 
         }
@@ -99,25 +122,19 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            /*menu.add(Menu.NONE, R.id.act_fav,
-                    Menu.NONE, R.string.add_favorite);
-            menu.add(Menu.NONE, R.id.action_delete,
-                    Menu.NONE, R.string.je_recherche);*/
             menu.setHeaderTitle("Select The Action");
-            menu.add(0, R.id.act_fav, getAdapterPosition(), "add fav");
-            menu.add(0, R.id.action_delete, getAdapterPosition(), "delte fave");
+            menu.add(0, R.id.act_fav, getAdapterPosition(), "add favorite");
+            menu.add(0, R.id.action_delete, getAdapterPosition(), "delete favorite");
+
+
 
         }
 
 
+        @Override
+        public void onClick(View v) {
 
-
-
-
-
-
-
-
+        }
     }
 
 

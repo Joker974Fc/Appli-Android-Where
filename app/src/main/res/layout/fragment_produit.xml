@@ -12,7 +12,8 @@
         android:layout_height="62dp"
         android:layout_alignParentTop="true"
         app:mt_hint="@string/search"
-        app:mt_speechMode="false" />
+        app:mt_speechMode="false"
+        app:mt_maxSuggestionsCount="10" />
 
 
 

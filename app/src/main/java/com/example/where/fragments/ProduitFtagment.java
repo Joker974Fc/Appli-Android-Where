@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.where.adapter.BoutiqueAdapter;
 import com.example.where.dataBases.DataBaseOpenhelp;
+import com.example.where.object.Boutique;
 import com.example.where.object.Produit;
 import com.example.where.adapter.ProduitAdapter;
 import com.example.where.R;
@@ -30,7 +31,10 @@ public class ProduitFtagment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private List<Produit> prod;
+    private List<Boutique> boutique;
+
     private ProduitAdapter pAdapt;
+    private  BoutiqueAdapter badap;
     private RecyclerView mRecycle;
     private DataBaseOpenhelp data;
     private MaterialSearchBar materialSearchBar;
@@ -87,29 +91,42 @@ public class ProduitFtagment extends Fragment {
         prod=data.getProduit();
         mRecycle=(RecyclerView)view.findViewById(R.id.recycle);
 
-        materialSearchBar = view.findViewById(R.id.seach);
+        materialSearchBar = (MaterialSearchBar) view.findViewById(R.id.seach);
+
+        materialSearchBar.setLastSuggestions(suggest);
+        loadsuggest();
+        boutique=new ArrayList<>();
+        badap = new BoutiqueAdapter(getActivity(),data.getBoutique());
 
 
 
-        pAdapt = new ProduitAdapter(getActivity(),data.getProduit());
-
+        pAdapt = new ProduitAdapter(getActivity(),data.getProduit2());
         mRecycle.setLayoutManager(new GridLayoutManager(getActivity(),2));
+
         mRecycle.setAdapter(pAdapt);
         pAdapt.setOnItemClickListener(new ProduitAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 prod.get(position);
-                BoutiqueAdapter badap = new BoutiqueAdapter(getActivity(),data.getMag(prod.get(position).getName()));
+                boutique=data.getMag(prod.get(position).getName());
+                badap = new BoutiqueAdapter(getActivity(),data.getMag(prod.get(position).getName()));
                 mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
                 mRecycle.setAdapter(badap);
             }
         });
 
-        materialSearchBar.setHint("seach");
-        materialSearchBar.setCardViewElevation(10);
-        suggest=data.getProduitName();
-        materialSearchBar.setLastSuggestions(suggest);
-        loadsuggest();
+        badap.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                boutique.get(position);
+                ProduitAdapter padap = new ProduitAdapter(getActivity(),data.getprobymag(boutique.get(position).getID()));
+                mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+                mRecycle.setAdapter(padap);
+            }
+        });
+
+
+
         materialSearchBar.addTextChangeListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -150,9 +167,8 @@ public class ProduitFtagment extends Fragment {
             }
         });
 
-
-
         // Inflate the layout for this fragment
+
         return view;
     }
 
