@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.where.R;
 import com.example.where.adapter.BoutiqueAdapter;
+import com.example.where.adapter.ProduitAdapter2;
 import com.example.where.dataBases.DataBaseOpenhelp;
 import com.example.where.object.Boutique;
 
@@ -75,6 +76,15 @@ public class LePortFragment extends Fragment {
 
         mAdapt2 = new BoutiqueAdapter(getActivity(), data.getBoutVille("Le PORT"));
         fav = new ArrayList<>();
+        mAdapt2.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                boutique.get(position);
+                ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
+                mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+                mRecycle.setAdapter(padap);
+            }
+        });
 
 
 

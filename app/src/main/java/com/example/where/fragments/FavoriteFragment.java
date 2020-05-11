@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.where.adapter.ProduitAdapter2;
 import com.example.where.dataBases.DataBaseOpenhelp;
+import com.example.where.object.Boutique;
 import com.example.where.object.Fav;
 import com.example.where.adapter.FavAdapter;
 import com.example.where.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,7 +36,7 @@ public class FavoriteFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private RecyclerView fRecycle;
-    private List<Fav> boutiques;
+    private List<Boutique> boutiques;
     private FavAdapter fAdapt;
     private DataBaseOpenhelp data;
 
@@ -79,15 +82,29 @@ public class FavoriteFragment extends Fragment {
         //init dataBase
         data = new DataBaseOpenhelp(getActivity());
 
+        boutiques=new ArrayList<>();
+        boutiques=data.getFav();
+//recyclerview
         fRecycle= view.findViewById(R.id.recyclef);
 
-
+//init adapter
         fAdapt = new FavAdapter(getActivity().getApplicationContext(),data.getFav());
 
         fRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
         fRecycle.setAdapter(fAdapt);
+//au clique
+        fAdapt.setOnItemClickListener(new FavAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+                ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutiques.get(position).getID()));
+                fRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+                fRecycle.setAdapter(padap);
+            }
+        });
 
 
+//return la vue
         return view;
     }
 }

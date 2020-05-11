@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.where.adapter.BoutiqueAdapter;
+import com.example.where.adapter.ProduitAdapter2;
 import com.example.where.dataBases.DataBaseOpenhelp;
 import com.example.where.object.Boutique;
 import com.example.where.object.Produit;
@@ -109,9 +110,21 @@ public class ProduitFtagment extends Fragment {
             public void onItemClick(int position) {
                 prod.get(position);
                 boutique=data.getMag(prod.get(position).getName());
+
                 badap = new BoutiqueAdapter(getActivity(),data.getMag(prod.get(position).getName()));
                 mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
                 mRecycle.setAdapter(badap);
+
+                badap.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        boutique.get(position);
+                        boutique=data.getMag(prod.get(position).getName());
+                        ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
+                        mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        mRecycle.setAdapter(padap);
+                    }
+                });
             }
         });
 
@@ -119,7 +132,7 @@ public class ProduitFtagment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 boutique.get(position);
-                ProduitAdapter padap = new ProduitAdapter(getActivity(),data.getprobymag(boutique.get(position).getID()));
+                ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
                 mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
                 mRecycle.setAdapter(padap);
             }
