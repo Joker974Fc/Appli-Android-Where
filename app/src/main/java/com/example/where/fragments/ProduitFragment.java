@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,7 +26,7 @@ import com.mancj.materialsearchbar.MaterialSearchBar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProduitFtagment extends Fragment {
+public class ProduitFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -45,7 +46,7 @@ public class ProduitFtagment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ProduitFtagment() {
+    public ProduitFragment() {
         // Required empty public constructor
     }
 
@@ -58,8 +59,8 @@ public class ProduitFtagment extends Fragment {
      * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProduitFtagment newInstance(String param1, String param2) {
-        ProduitFtagment fragment = new ProduitFtagment();
+    public static ProduitFragment newInstance(String param1, String param2) {
+        ProduitFragment fragment = new ProduitFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -127,7 +128,7 @@ public class ProduitFtagment extends Fragment {
                 });
             }
         });
-
+//onClik sur boutique
         badap.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -166,7 +167,32 @@ public class ProduitFtagment extends Fragment {
             @Override
             public void onSearchStateChanged(boolean enabled) {
                 if(!enabled)
+                    pAdapt = new ProduitAdapter(getActivity(),data.getProduit2());
+                    mRecycle.setLayoutManager(new GridLayoutManager(getActivity(),2));
                     mRecycle.setAdapter(pAdapt);
+                pAdapt.setOnItemClickListener(new ProduitAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        prod.get(position);
+                        boutique=data.getMag(prod.get(position).getName());
+
+                        badap = new BoutiqueAdapter(getActivity(),data.getMag(prod.get(position).getName()));
+                        mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        mRecycle.setAdapter(badap);
+
+                        badap.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+                                boutique=data.getMag(prod.get(position).getName());
+                                ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
+                                mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+                                mRecycle.setAdapter(padap);
+                            }
+                        });
+
+                    }
+                });
+
             }
 
             @Override
@@ -186,13 +212,66 @@ public class ProduitFtagment extends Fragment {
     }
 
     private void startSearch(String text) {
-        pAdapt=new ProduitAdapter(getActivity(),data.getprodbyname(text));
-        mRecycle.setAdapter(pAdapt);
+        if(text==" "){
+            pAdapt = new ProduitAdapter(getActivity(),data.getProduit2());
+            mRecycle.setAdapter(pAdapt);
+        }else {
+            pAdapt=new ProduitAdapter(getActivity(),data.getprodbyname(text));
+            mRecycle.setAdapter(pAdapt);
+            pAdapt.setOnItemClickListener(new ProduitAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    boutique=data.getMag(prod.get(position).getName());
+
+                    badap = new BoutiqueAdapter(getActivity(),data.getMag(prod.get(position).getName()));
+                    mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    mRecycle.setAdapter(badap);
+
+                    badap.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(int position) {
+                            ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
+                            mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            mRecycle.setAdapter(padap);
+                        }
+                    });
+
+                }
+            });
+
+
+        }
+
     }
 
     private void loadsuggest() {
         suggest=data.getProduitName();
         materialSearchBar.setLastSuggestions(suggest);
+    }
+
+//Context Menu
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mRecycle = view.findViewById(R.id.recycle);
+        registerForContextMenu(mRecycle);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int position = item.getOrder();
+        String name = boutique.get(position).getName();
+        String prod = boutique.get(position).getarticle();
+        String city = boutique.get(position).getCity();
+
+        switch (item.getItemId()) {
+            case R.id.act_fav:
+                data.insertFav(name,prod,city);
+                return true;
+            case R.id.action_delete:
+                data.deletFav(name);
+        }
+        return super.onContextItemSelected(item);
     }
 
 }

@@ -230,7 +230,6 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
 
 
         qb.setTables(tableName);
-        //Cursor c = db.rawQuery("SELECT * FROM "+ tableName+ " INNER JOIN "+ tableName2+ " ON "+colName2+ " = "+colName+ " WHERE "+colName3+ "= " +prod,null);
         String sql=("SELECT * FROM "+ tableName+ " WHERE "+colName+"='"+ville+"'");
         Cursor c = db.rawQuery(sql,null);
         List<Boutique> result = new ArrayList<>();
@@ -260,8 +259,12 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
         List<Produit> result = new ArrayList<>();
         if (c.moveToFirst()){
             do {
+                byte[]imageByte= c.getBlob(c.getColumnIndex("IMG"));
+                Bitmap image = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+
                 Produit produit = new Produit();
                 produit.setName(c.getString(c.getColumnIndex("NAME")));
+                produit.setImg(image);
 
                 result.add(produit);
             }while (c.moveToNext());

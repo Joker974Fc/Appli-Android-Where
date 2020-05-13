@@ -86,12 +86,16 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
         private TextView article;
         private TextView city;
 
+
         MyViewHolder(View view, final BoutiqueAdapter.OnItemClickListener listener) {
             super(view);
             name = view.findViewById(R.id.textView4);
             article = view.findViewById(R.id.textView5);
             city = view.findViewById(R.id.textView6);
-           // itemView.setOnClickListener(this);
+
+
+
+            // itemView.setOnClickListener(this);
             view.setOnCreateContextMenuListener(this);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -115,7 +119,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
             name.setText(boutique.getName());
             article.setText(boutique.getarticle());
             city.setText(boutique.getCity());
-
+            
         }
 
 

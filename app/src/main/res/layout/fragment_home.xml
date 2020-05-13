@@ -7,12 +7,7 @@
     android:background="#05EAD9D9"
     tools:context=".fragments.HomeFragment">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

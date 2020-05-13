@@ -1,5 +1,6 @@
 package com.example.where;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.where.adapter.BoutiqueAdapter;
@@ -19,7 +19,7 @@ import com.example.where.fragments.FavoriteFragment;
 import com.example.where.fragments.HomeFragment;
 import com.example.where.fragments.LaPossesionFragment;
 import com.example.where.fragments.LePortFragment;
-import com.example.where.fragments.ProduitFtagment;
+import com.example.where.fragments.ProduitFragment;
 //import com.bottomnavigationview.fragments.NotificationFragment;
 //import com.bottomnavigationview.fragments.SmsFragment;
 import com.example.where.fragments.StDenisFragment;
@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
                             openFragment(HomeFragment.newInstance("", ""));
                             return true;
                         case R.id.navigation_dash:
-                            //openFragment(DasboardFragment.newInstance("", ""));
-                            //Intent activity2 = new Intent(MainActivity.this, MainActivity2.class);
-                            //startActivity(activity2);
+
+                            Intent activity3 = new Intent(MainActivity.this, MainActivity3.class);
+                            startActivity(activity3);
                             return true;
                         case R.id.navigation_notif:
                             openFragment(FavoriteFragment.newInstance("", ""));
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void prod(View view) {
-        openFragment(ProduitFtagment.newInstance("", ""));
+        openFragment(ProduitFragment.newInstance("", ""));
     }
 
     public void saintDenis(View v){
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item); // important line
-    }
+    }*/
 
 
 
