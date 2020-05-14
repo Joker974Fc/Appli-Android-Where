@@ -23,5 +23,7 @@ Ici nous créerons manuellement une liste prédéfinie de Magasins et Produits q
 Ios aura une conexion base de donées.
 
 ##Ressources importantes
-[Application Android](Where)
+
+[Application Android](app)
+
 [Rapport du projet](latexRapport)
