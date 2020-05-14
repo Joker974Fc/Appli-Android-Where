@@ -22,6 +22,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
     private List<Boutique> boutiques;
     private OnItemClickListener mList;
 
+    //interface au clique sur un item
     public interface OnItemClickListener{
         void onItemClick(int position);
     }
@@ -31,11 +32,12 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
         this.context=context;
     }
 
+    //listener onclick
     public void setOnItemClickListener(FavAdapter.OnItemClickListener listener){
         mList=listener;
     }
 
-
+    //charge la vue
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
@@ -45,6 +47,8 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
 
 
     }
+
+
     private int position;
 
     public  int getPosition() {
@@ -55,6 +59,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
         this.position = position;
     }
 
+    //data
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position){
         //holder.display(boutiques.get(position));
@@ -107,12 +112,12 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
 
         }
 
-        void display(Boutique boutique) {
+       /* void display(Boutique boutique) {
             name.setText(boutique.getName());
             article.setText(boutique.getarticle());
             city.setText(boutique.getCity());
 
-        }
+        }*/
 
 
         @Override

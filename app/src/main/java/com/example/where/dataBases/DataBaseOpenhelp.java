@@ -107,6 +107,7 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
 
     }
 
+    //Nom des produits
     public List<String> getProduitName(){
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
@@ -153,20 +154,6 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
     }
 
     //insert info
-    public void addFav(int id,String nom,String produit,String ville){
-        //nom = nom.replace( "'", "''" );
-        String strSql = "insert into FAVORI (NOM, PRODUIT, VILLE) select "
-                + nom + ", " + produit + ", " + ville + ")";
-        this.getWritableDatabase().execSQL( strSql );
-        Log.i( "DATABASE", "add Favorite" );
-
-
-
-
-
-
-    }
-
     public long insertFav(String Name, String Produit, String Ville) {
         SQLiteDatabase db=getWritableDatabase();
         String tableName="FAVORI";
@@ -247,6 +234,7 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
 
     }
 
+    //produit par nom
     public List<Produit> getprodbyname(String prod){
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();

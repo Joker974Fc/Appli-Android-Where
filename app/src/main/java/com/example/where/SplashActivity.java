@@ -7,7 +7,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
+//Splash Screen
 public class SplashActivity extends Activity {
     private static int time=1500;
 

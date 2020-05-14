@@ -92,17 +92,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+
+    //button
     public void open(View v){
         BoutiqueFragment boutiqueFragment = new BoutiqueFragment();
-        boutiqueFragment.setM(1);
 
         openFragment(BoutiqueFragment.newInstance("", ""));
     }
 
+
     public void prod(View view) {
         openFragment(ProduitFragment.newInstance("", ""));
     }
-
+    //image button onClick
     public void saintDenis(View v){
         openFragment(StDenisFragment.newInstance("",""));
     }

@@ -119,7 +119,6 @@ public class ProduitFragment extends Fragment {
                 badap.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        boutique.get(position);
                         boutique=data.getMag(prod.get(position).getName());
                         ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
                         mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -132,7 +131,6 @@ public class ProduitFragment extends Fragment {
         badap.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                boutique.get(position);
                 ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
                 mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
                 mRecycle.setAdapter(padap);

@@ -56,6 +56,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="697dp"
         android:layout_height="279dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:fillViewport="true">
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -77,8 +78,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
                     <ImageButton
                         android:id="@+id/imageButton"
                         style="@android:style/Widget.DeviceDefault.Light.ImageButton"
@@ -108,8 +110,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
 
                     <ImageButton
                         android:id="@+id/imageButton2"
@@ -140,16 +142,16 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
 
                     <ImageButton
                         android:id="@+id/imageButton3"
                         android:layout_width="wrap_content"
-                        android:onClick="LePort"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:onClick="LePort"
                         android:src="@drawable/ville3" />
 
                     <TextView
@@ -171,11 +173,8 @@
                 </LinearLayout>
 
 
-
-
-
             </LinearLayout>
-           
+
         </HorizontalScrollView>
 
 
@@ -188,9 +187,29 @@
         android:layout_height="52dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="400dp"
+        android:layout_height="52dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/par_secteur"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.188"
+        tools:layout_editor_absoluteX="277dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

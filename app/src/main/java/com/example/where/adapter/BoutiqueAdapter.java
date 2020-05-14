@@ -47,6 +47,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
     }
 
+    //position
     private int position;
 
     public  int getPosition() {
@@ -57,6 +58,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
         this.position = position;
     }
 
+    //donées
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position){
         //holder.display(boutiques.get(position));
@@ -115,15 +117,15 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
 
 
-        void display(Boutique boutique) {
+       /* void display(Boutique boutique) {
             name.setText(boutique.getName());
             article.setText(boutique.getarticle());
             city.setText(boutique.getCity());
             
-        }
+        }*/
 
 
-
+        //Context menu
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Select The Action");

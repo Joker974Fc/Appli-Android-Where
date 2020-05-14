@@ -16,6 +16,8 @@ import com.example.where.object.Produit;
 
 import java.util.List;
 
+
+//même que produitAdapter mais plus de détails
 public class ProduitAdapter2 extends RecyclerView.Adapter<ProduitAdapter2.MyViewHolder> {
     List<Produit> produits;
     public Context context;

@@ -75,7 +75,7 @@ public class BoutiqueFragment extends Fragment {
          boutique = new ArrayList<>();
          boutique=  data.getBoutique();
 
-
+//init adapter
         mAdapt = new BoutiqueAdapter(getActivity(), data.getBoutique());
         //mAdapt2 = new BoutiqueAdapter(getActivity(), data.getBoutVille("Saint Denis"));
         fav = new ArrayList<>();
@@ -84,7 +84,7 @@ public class BoutiqueFragment extends Fragment {
 
         mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecycle.setAdapter(mAdapt);
-
+//click on item
         mAdapt.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
             @Override
         public void onItemClick(int position) {
@@ -103,12 +103,8 @@ public class BoutiqueFragment extends Fragment {
         return view;
     }
 
-    public void setM(int m){
-        this.m=m;
-    }
 
-
-
+//Context menu
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
