@@ -26,4 +26,6 @@ Ios aura une conexion base de donées.
 
 [Application Android](app)
 
+Lien vers la version IOS:  https://gitlab.com/ludo_g/devmobilel3
+
 [Rapport du projet](latexRapport)
