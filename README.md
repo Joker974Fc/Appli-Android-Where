@@ -4,7 +4,7 @@ Fichier README :
 GRONDIN Ludovic
 CLAIN Florian
 
-Brève description de l'application:
+##Brève description de l'application:
 
 NOM DE L'APP : WHERE
 
@@ -22,4 +22,10 @@ Ici nous créerons manuellement une liste prédéfinie de Magasins et Produits q
 
 Ios aura une conexion base de donées.
 
-f581693e3a5e779b8b707bea341995f71432488a
+##Ressources importantes
+
+[Application Android](app)
+
+Lien vers la version IOS:  https://gitlab.com/ludo_g/devmobilel3
+
+[Rapport du projet](latexRapport)
