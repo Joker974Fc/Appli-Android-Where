@@ -21,4 +21,5 @@ Produits (qui pourraient eux-même être renseignés via une interface web par e
 Ici nous créerons manuellement une liste prédéfinie de Magasins et Produits que nous utiliserons dans l'application.
 
 Ios aura une conexion base de donées.
-`git status`
+
+[Contribution guidelines for this project](Appli-Adroid-Where/)
