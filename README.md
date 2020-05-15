@@ -4,7 +4,7 @@ Fichier README :
 GRONDIN Ludovic
 CLAIN Florian
 
-##Brève description de l'application:
+## Brève description de l'application:
 
 NOM DE L'APP : WHERE
 
@@ -22,7 +22,7 @@ Ici nous créerons manuellement une liste prédéfinie de Magasins et Produits q
 
 Ios aura une conexion base de donées.
 
-##Ressources importantes
+## Ressources importantes
 
 [Application Android](app)
 
