@@ -95,7 +95,6 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.MyViewHo
 
         void display(Produit produits) {
             name.setText(produits.getName());
-            //stock.setChecked(produits.getStock());
             img.setImageBitmap(produits.getImg());
 
         }

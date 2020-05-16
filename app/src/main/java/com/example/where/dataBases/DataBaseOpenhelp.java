@@ -262,7 +262,7 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
     }
 
     //produit d'un magasin
-    public List<Produit> getprobymag(long ID){
+    public List<Produit> getprobymag(long id){
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         String tableName="lboutique";
@@ -274,7 +274,7 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
 
         qb.setTables(tableName);
 
-        String sql=("SELECT  produit.NAME,produit.IMG,produit.DESC,produit.PRIX FROM "+ tableName2+ " INNER JOIN "+ tableName+ " ON "+tableName2+"."+colName2+ " = "+tableName+"."+colName+ " WHERE "+colName2+"='"+ID+"'");
+        String sql=("SELECT  produit.NAME,produit.IMG,produit.DESC,produit.PRIX FROM "+ tableName2+ " INNER JOIN "+ tableName+ " ON "+tableName2+"."+colName2+ " = "+tableName+"."+colName+ " WHERE "+tableName2+"."+colName2+"='"+id+"'");
         Cursor c = db.rawQuery(sql,null);
         List<Produit> result = new ArrayList<>();
         if (c.moveToFirst()){

@@ -2,9 +2,11 @@ package com.example.where.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -103,8 +105,36 @@ public class FavoriteFragment extends Fragment {
             }
         });
 
+        registerForContextMenu(fRecycle);
 
 //return la vue
         return view;
     }
+
+
+    //Context menu
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        fRecycle = view.findViewById(R.id.recyclef);
+        registerForContextMenu(fRecycle);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int position = item.getOrder();
+        String name = boutiques.get(position).getName();
+
+
+        switch (item.getItemId()) {
+            case R.id.action_delete:
+                data.deletFav(name);
+                fAdapt = new FavAdapter(getActivity().getApplicationContext(),data.getFav());
+                fRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
+                fRecycle.setAdapter(fAdapt);
+
+        }
+        return super.onContextItemSelected(item);
+    }
+
 }

@@ -35,7 +35,7 @@ public class BoutiqueFragment extends Fragment {
     private BoutiqueAdapter mAdapt2;
     public List<Boutique> fav;
     private DataBaseOpenhelp data;
-    int m=1;
+
 
 
 

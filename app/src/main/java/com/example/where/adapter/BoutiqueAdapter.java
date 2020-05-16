@@ -117,13 +117,6 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
 
 
 
-       /* void display(Boutique boutique) {
-            name.setText(boutique.getName());
-            article.setText(boutique.getarticle());
-            city.setText(boutique.getCity());
-            
-        }*/
-
 
         //Context menu
         @Override
@@ -131,8 +124,6 @@ public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.MyView
             menu.setHeaderTitle("Select The Action");
             menu.add(0, R.id.act_fav, getAdapterPosition(), "add favorite");
             menu.add(0, R.id.action_delete, getAdapterPosition(), "delete favorite");
-
-
 
         }
 

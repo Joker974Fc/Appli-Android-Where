@@ -34,7 +34,7 @@ public class ProduitFragment extends Fragment {
 
     private List<Produit> prod;
     private List<Boutique> boutique;
-
+    private List<Boutique> boutique2;
     private ProduitAdapter pAdapt;
     private  BoutiqueAdapter badap;
     private RecyclerView mRecycle;
@@ -98,6 +98,8 @@ public class ProduitFragment extends Fragment {
         materialSearchBar.setLastSuggestions(suggest);
         loadsuggest();
         boutique=new ArrayList<>();
+        boutique2=new ArrayList<>();
+        boutique2=data.getBoutique();
         badap = new BoutiqueAdapter(getActivity(),data.getBoutique());
 
 
@@ -109,33 +111,27 @@ public class ProduitFragment extends Fragment {
         pAdapt.setOnItemClickListener(new ProduitAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                prod.get(position);
-                boutique=data.getMag(prod.get(position).getName());
-
+                boutique2=data.getMag(prod.get(position).getName());
                 badap = new BoutiqueAdapter(getActivity(),data.getMag(prod.get(position).getName()));
+
                 mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
                 mRecycle.setAdapter(badap);
 
                 badap.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
+                    //problème lors de l'affichage
                     @Override
                     public void onItemClick(int position) {
-                        boutique=data.getMag(prod.get(position).getName());
-                        ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
+
+                        ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique2.get(position).getID()));
                         mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
                         mRecycle.setAdapter(padap);
                     }
                 });
+
+
             }
         });
-//onClik sur boutique
-        badap.setOnItemClickListener(new BoutiqueAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                ProduitAdapter2 padap = new ProduitAdapter2(getActivity(),data.getprobymag(boutique.get(position).getID()));
-                mRecycle.setLayoutManager(new LinearLayoutManager(getActivity()));
-                mRecycle.setAdapter(padap);
-            }
-        });
+
 
 
 
@@ -166,8 +162,8 @@ public class ProduitFragment extends Fragment {
             public void onSearchStateChanged(boolean enabled) {
                 if(!enabled)
                     pAdapt = new ProduitAdapter(getActivity(),data.getProduit2());
-                    mRecycle.setLayoutManager(new GridLayoutManager(getActivity(),2));
-                    mRecycle.setAdapter(pAdapt);
+                mRecycle.setLayoutManager(new GridLayoutManager(getActivity(),2));
+                mRecycle.setAdapter(pAdapt);
                 pAdapt.setOnItemClickListener(new ProduitAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
@@ -247,7 +243,7 @@ public class ProduitFragment extends Fragment {
         materialSearchBar.setLastSuggestions(suggest);
     }
 
-//Context Menu
+    //Context Menu
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -255,21 +251,5 @@ public class ProduitFragment extends Fragment {
         registerForContextMenu(mRecycle);
     }
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        int position = item.getOrder();
-        String name = boutique.get(position).getName();
-        String prod = boutique.get(position).getarticle();
-        String city = boutique.get(position).getCity();
-
-        switch (item.getItemId()) {
-            case R.id.act_fav:
-                data.insertFav(name,prod,city);
-                return true;
-            case R.id.action_delete:
-                data.deletFav(name);
-        }
-        return super.onContextItemSelected(item);
-    }
 
 }

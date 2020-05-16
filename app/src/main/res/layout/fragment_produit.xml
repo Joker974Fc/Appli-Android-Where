@@ -8,8 +8,8 @@
 
     <com.mancj.materialsearchbar.MaterialSearchBar
         android:id="@+id/seach"
-        android:layout_width="391dp"
-        android:layout_height="62dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         app:mt_hint="@string/search"
         app:mt_speechMode="false"

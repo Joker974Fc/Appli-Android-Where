@@ -84,7 +84,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
     //public class Favorite
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
         private TextView name;
         private TextView article;
         private TextView city;
@@ -109,16 +109,31 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
                 }
             });
 
+            view.setOnCreateContextMenuListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener!=null){
+                        int pos = getAdapterPosition();
+                        if(pos!=RecyclerView.NO_POSITION){
+                            listener.onItemClick(pos);
+                        }
+                    }
+
+                }
+            });
+
 
         }
 
-       /* void display(Boutique boutique) {
-            name.setText(boutique.getName());
-            article.setText(boutique.getarticle());
-            city.setText(boutique.getCity());
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.setHeaderTitle("Select The Action");
+            menu.add(0, R.id.action_delete, getAdapterPosition(), "delete favorite");
 
-        }*/
 
+
+        }
 
         @Override
         public void onClick(View v) {

@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
     //button
     public void open(View v){
-        BoutiqueFragment boutiqueFragment = new BoutiqueFragment();
 
         openFragment(BoutiqueFragment.newInstance("", ""));
     }
