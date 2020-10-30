@@ -28,6 +28,6 @@ Ios aura une conexion base de donées.
 
 Lien vers la version IOS:  https://gitlab.com/ludo_g/devmobilel3
 
-[Rapport du projet](latexRapport)
+[Rapport du projet L3](latexRapport)
 
-[Slide](slide)
+[Slide L3](slide)
