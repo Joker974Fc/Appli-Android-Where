@@ -1,4 +1,4 @@
-# Appli-Android-Where
+# Appli-Android-Where version 1 (L3)
 Android project 
 Fichier README :
 GRONDIN Ludovic
