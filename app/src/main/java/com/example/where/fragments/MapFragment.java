@@ -126,17 +126,50 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
+        //Lieux
         LatLng AeroportR = new LatLng(-20.894131, 55.508253);
+        LatLng Bout0 = new LatLng(-20.886013, 55.456623);
+        LatLng Bout1 = new LatLng(-20.875147, 55.452932);
+        LatLng Bout3 = new LatLng(-20.882044, 55.460614);
+        LatLng Bout5 = new LatLng(-20.916283, 55.460492);
+
+        LatLng Bout2 = new LatLng(-20.931888, 55.334069);
+        LatLng Bout4 = new LatLng(-20.942750, 55.330679);
+
+
+
+
+
+
+        //ajout
         map.addMarker(new MarkerOptions().position(AeroportR).title("Aeroport de La Reunion Roland Garros"));
+        map.addMarker(new MarkerOptions().position(Bout0).title("Boutique 0").snippet("La vida loca"));
+        map.addMarker(new MarkerOptions().position(Bout1).title("Boutique 1").snippet("Fruits et Légumes"));
+        map.addMarker(new MarkerOptions().position(Bout3).title("Boutique 3").snippet("Fruits et Légumes"));
+        map.addMarker(new MarkerOptions().position(Bout5).title("Boutique 5").snippet("Fruits et Légumes"));
+        map.addMarker(new MarkerOptions().position(Bout2).title("Boutique 2").snippet("Fruits et Légumes"));
+        map.addMarker(new MarkerOptions().position(Bout4).title("Boutique 4").snippet("Fruits et Légumes"));
+
+
+
+
+
+
+
+
+
+        //default location
         map.moveCamera(CameraUpdateFactory.newLatLng(AeroportR));
+        map.animateCamera(CameraUpdateFactory.zoomTo(10));
 
-
+        //setting
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         map.setTrafficEnabled(true);
         map.setIndoorEnabled(true);
         map.setBuildingsEnabled(true);
         map.getUiSettings().setZoomControlsEnabled(true);
 
+        //check location permission
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions

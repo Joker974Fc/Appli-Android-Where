@@ -1,10 +1,13 @@
 package com.example.where;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,15 +18,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.where.adapter.BoutiqueAdapter;
 import com.example.where.dataBases.DataBaseOpenhelp;
 import com.example.where.fragments.BoutiqueFragment;
+import com.example.where.fragments.DasboardFragment;
 import com.example.where.fragments.FavoriteFragment;
 import com.example.where.fragments.HomeFragment;
 import com.example.where.fragments.LaPossesionFragment;
 import com.example.where.fragments.LePortFragment;
+import com.example.where.fragments.MapFragment;
 import com.example.where.fragments.ProduitFragment;
-//import com.bottomnavigationview.fragments.NotificationFragment;
-//import com.bottomnavigationview.fragments.SmsFragment;
 import com.example.where.fragments.StDenisFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+//import com.bottomnavigationview.fragments.NotificationFragment;
+//import com.bottomnavigationview.fragments.SmsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     BoutiqueAdapter boutiqueAdapter;
     DataBaseOpenhelp db;
     RecyclerView recyclerView;
+
+    boolean doubletap = false;
 
     //DataBaseHelp myDb;
 
@@ -75,15 +83,19 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment fragment = null;
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
                             openFragment(HomeFragment.newInstance("", ""));
                             return true;
                         case R.id.navigation_dash:
 
-                            Intent activity3 = new Intent(MainActivity.this, MainActivity3.class);
-                            startActivity(activity3);
+                            /*Intent activity3 = new Intent(MainActivity.this, MainActivity3.class);
+                            startActivity(activity3);*/
+                            openFragment(MapFragment.newInstance("",""));
+
                             return true;
+
                         case R.id.navigation_notif:
                             openFragment(FavoriteFragment.newInstance("", ""));
                             return true;
@@ -130,6 +142,25 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item); // important line
     }*/
+
+    @Override
+    public void onBackPressed(){
+        if(doubletap){
+            super.onBackPressed();
+            System.exit(0);
+        }
+        else {
+            Toast.makeText(this, R.string.Close,Toast.LENGTH_SHORT).show();
+            doubletap=true;
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubletap = false;
+                }
+            },500);
+        }
+    }
 
 
 
