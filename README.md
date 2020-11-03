@@ -1,4 +1,4 @@
-# Appli-Android-Where
+# Appli-Android-Where version 1 (L3)
 Android project 
 Fichier README :
 GRONDIN Ludovic
@@ -28,6 +28,31 @@ Ios aura une conexion base de donées.
 
 Lien vers la version IOS:  https://gitlab.com/ludo_g/devmobilel3
 
-[Rapport du projet](latexRapport)
+[Rapport du projet L3](latexRapport)
 
-[Slide](slide)
+[Slide L3](slide)
+
+# Appli-Android-Where version 2 (Master 1)
+
+## Sujet:
+
+Concevoir une application Android ou iOS faisant appel à des notions vues dans
+chaque chapitre du cours :
+
+⁃ Changements de configuration (Android) : l’application doit gérer ces
+changements (changement de langue, passage de portrait à paysage…)
+
+⁃ Internationalisation : l’application doit être disponible en français et en
+anglais.
+
+⁃ Géolocalisation : l’application doit au moins récupérer et utiliser les positions
+de l’utilisateur. L'utilisation des cartes sera très favorablement appréciée.
+
+⁃ Capteurs : l’application doit utiliser au moins un capteur (accéléromètre…)
+
+⁃ Lecture audio
+
+⁃ Gestes courants : l’application doit faire appel à au moins un geste non-trivial
+(double tap, balayage…)
+
+⁃ Appareil photo
