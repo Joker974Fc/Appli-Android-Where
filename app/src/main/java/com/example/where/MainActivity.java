@@ -61,9 +61,7 @@ public class MainActivity extends AppCompatActivity {
         db=new DataBaseOpenhelp(this);
         BoutiqueFragment fragment = new BoutiqueFragment();
 
-        //son demarrage
-        MediaPlayer start = MediaPlayer.create(this,R.raw.start);
-        start.start();
+       
 
 
 
@@ -106,8 +104,7 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         case R.id.navigation_dash:
 
-                            /*Intent activity3 = new Intent(MainActivity.this, MainActivity3.class);
-                            startActivity(activity3);*/
+
                             openFragment(MapFragment.newInstance("",""));
 
                             return true;
@@ -144,6 +141,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void LePort(View view) {
         openFragment(LePortFragment.newInstance("",""));
+    }
+
+    public void cam(View view) {
+        Intent activity3 = new Intent(MainActivity.this, MainActivity3.class);
+        startActivity(activity3);
     }
 
 
