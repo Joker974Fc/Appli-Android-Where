@@ -2,10 +2,12 @@ package com.example.where;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     boolean doubletap = false;
 
+
+
     //DataBaseHelp myDb;
 
 
@@ -56,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recycle1);
         db=new DataBaseOpenhelp(this);
         BoutiqueFragment fragment = new BoutiqueFragment();
+
+        //son demarrage
+        MediaPlayer start = MediaPlayer.create(this,R.raw.start);
+        start.start();
+
+
+
+
+
+
+
+
 
         //fav1=findViewById(R.id.imageButton2);
 
@@ -107,13 +123,15 @@ public class MainActivity extends AppCompatActivity {
 
     //button
     public void open(View v){
-
+        //click.start();
         openFragment(BoutiqueFragment.newInstance("", ""));
     }
 
 
     public void prod(View view) {
+
         openFragment(ProduitFragment.newInstance("", ""));
+
     }
     //image button onClick
     public void saintDenis(View v){
