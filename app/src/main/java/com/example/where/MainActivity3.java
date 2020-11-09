@@ -45,6 +45,7 @@ public class MainActivity3 extends Activity {
         Button btncam = (Button) findViewById(R.id.butP);
         img = (ImageView) findViewById(R.id.imgP);
 
+        //open app photo du tel
         btncam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,9 +60,16 @@ public class MainActivity3 extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //recup photo prise
         Bitmap bitmap = (Bitmap) data.getExtras().get("data");
         img.setImageBitmap(bitmap);
 
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent activity = new Intent(MainActivity3.this, MainActivity.class);
+        startActivity(activity);
     }
 }

@@ -10,6 +10,7 @@ import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.where.object.Avis;
 import com.example.where.object.Boutique;
 import com.example.where.object.Produit;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
@@ -79,7 +80,8 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
         return result;
 
     }
-//Produits + image
+
+    //Produits + image
     public List<Produit> getProduit2(){
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
@@ -153,7 +155,7 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
 
     }
 
-    //insert info
+    //insert in Fav
     public long insertFav(String Name, String Produit, String Ville) {
         SQLiteDatabase db=getWritableDatabase();
         String tableName="FAVORI";
@@ -291,6 +293,48 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
                 produit.setPrix(c.getString(c.getColumnIndex("PRIX")));
 
                 result.add(produit);
+            }while (c.moveToNext());
+        }
+        return result;
+
+    }
+
+
+    //insert in Avis
+    public long insertAvis(Bitmap img, String desc) {
+        SQLiteDatabase db=getWritableDatabase();
+        String tableName="Avis";
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        qb.setTables(tableName);
+        ContentValues values = new ContentValues();
+        values.put("img", img.toString());
+        values.put("description", desc.toString());
+        return db.insert(tableName, null, values);
+    }
+
+    // get all Avis
+
+    public List<Avis> getAvis(){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect = {"ID","img","description"};
+        String tableName="Avis";
+
+        qb.setTables(tableName);
+        Cursor c = qb.query(db,sqlSelect,null,null,null,null,null);
+        List<Avis> result = new ArrayList<>();
+        if (c.moveToFirst()){
+            do {
+                byte[]imageByte= c.getBlob(c.getColumnIndex("img"));
+                Bitmap image = BitmapFactory.decodeByteArray(imageByte,0,imageByte.length);
+
+                Avis avis = new Avis();
+                avis.setID(c.getLong(c.getColumnIndex("ID")));
+                avis.setDescription(c.getString(c.getColumnIndex("description")));
+                avis.setImg(image);
+
+                result.add(avis);
             }while (c.moveToNext());
         }
         return result;
