@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         db=new DataBaseOpenhelp(this);
         BoutiqueFragment fragment = new BoutiqueFragment();
 
-       
+
 
 
 
@@ -144,8 +144,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cam(View view) {
-        Intent activity3 = new Intent(MainActivity.this, MainActivity3.class);
-        startActivity(activity3);
+        /*Intent activity3 = new Intent(MainActivity.this, MainActivity3.class);
+        startActivity(activity3);*/
+
+       Intent activityF = new Intent(MainActivity.this, MainActivity2.class);
+        startActivity(activityF);
     }
 
 
@@ -166,8 +169,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         if(doubletap){
-            super.onBackPressed();
-            System.exit(0);
+            //super.onBackPressed();
+
+            moveTaskToBack(true);
+            //System.exit(0);
         }
         else {
             Toast.makeText(this, R.string.Close,Toast.LENGTH_SHORT).show();

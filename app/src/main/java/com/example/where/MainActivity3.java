@@ -3,38 +3,33 @@ package com.example.where;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridView;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.math.BigInteger;
-import java.security.SecureRandom;
+import com.example.where.dataBases.DataBaseOpenhelp2;
+import com.example.where.object.Avis;
 
 //Camera test
 
-public class MainActivity3 extends Activity {
+public class MainActivity3 extends AppCompatActivity {
 
+    private static final int CAMERA_REQUEST_CODE = 200;
     ImageView img;
+    EditText editText;
+    Bitmap bitmap;
+
+
 
 
     @Override
@@ -42,17 +37,10 @@ public class MainActivity3 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
-        Button btncam = (Button) findViewById(R.id.butP);
         img = (ImageView) findViewById(R.id.imgP);
+        editText = (EditText) findViewById(R.id.edit);
 
-        //open app photo du tel
-        btncam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,0);
-            }
-        });
+
 
     }
 
@@ -60,9 +48,14 @@ public class MainActivity3 extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //recup photo prise
-        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-        img.setImageBitmap(bitmap);
+        // apperçu photo
+        if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            img.setImageBitmap(imageBitmap);
+        }
+
+
 
 
     }
@@ -72,4 +65,33 @@ public class MainActivity3 extends Activity {
         Intent activity = new Intent(MainActivity3.this, MainActivity.class);
         startActivity(activity);
     }
+
+
+    //save comentaire
+    public void val(View view) {
+        img.setDrawingCacheEnabled(true);
+        Bitmap imge= ((BitmapDrawable)img.getDrawable()).getBitmap();
+        new DataBaseOpenhelp2(this).addAvis(new Avis(editText.getText().toString(), imge));
+        img.setDrawingCacheEnabled(false);
+        Toast.makeText(this, R.string.avispub,Toast.LENGTH_SHORT).show();
+    }
+
+    public void seeavis(View view) {
+        Intent myIntent = new Intent(this, AvisActivity2.class);
+        startActivity(myIntent);
+        /*Intent activity = new Intent(AvisActivity2.this, MainActivity.class);
+        startActivity(activity);*/
+    }
+
+    //open app photo du tel
+    public void open(View view) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
+        }
+    }
+
+
+
+
 }
