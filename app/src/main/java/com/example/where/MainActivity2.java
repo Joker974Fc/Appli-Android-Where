@@ -27,6 +27,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         final Executor executor = Executors.newSingleThreadExecutor();
 
+        //Capteur Biometric
         final BiometricPrompt biometricPrompt = new BiometricPrompt.Builder(this)
                 .setTitle(getString(R.string.TBio))
                 .setSubtitle(getString(R.string.SubBio))
@@ -41,6 +42,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         MainActivity2 activity2=this;
 
+        //Action after verif
         authentificate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

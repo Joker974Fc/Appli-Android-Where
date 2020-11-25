@@ -27,6 +27,7 @@ public class AvisAdapter extends CursorAdapter {
         return view;
     }
 
+    //Placement
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder holder = (ViewHolder)view.getTag();
@@ -37,6 +38,7 @@ public class AvisAdapter extends CursorAdapter {
         holder.titleTextView.setText(avis.getTitle());
         holder.imageView.setImageBitmap(avis.getImage());
     }
+
 
 
 

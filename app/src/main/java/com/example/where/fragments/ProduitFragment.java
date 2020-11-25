@@ -93,10 +93,13 @@ public class ProduitFragment extends Fragment {
         prod=data.getProduit();
         mRecycle=(RecyclerView)view.findViewById(R.id.recycle);
 
+        //search bar
         materialSearchBar = (MaterialSearchBar) view.findViewById(R.id.seach);
 
         materialSearchBar.setLastSuggestions(suggest);
         loadsuggest();
+
+        //boutique data
         boutique=new ArrayList<>();
         boutique2=new ArrayList<>();
         boutique2=data.getBoutique();
@@ -107,6 +110,7 @@ public class ProduitFragment extends Fragment {
         pAdapt = new ProduitAdapter(getActivity(),data.getProduit2());
         mRecycle.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
+        //Au click
         mRecycle.setAdapter(pAdapt);
         pAdapt.setOnItemClickListener(new ProduitAdapter.OnItemClickListener() {
             @Override
@@ -131,6 +135,8 @@ public class ProduitFragment extends Fragment {
 
             }
         });
+
+
 
 
 
@@ -203,6 +209,13 @@ public class ProduitFragment extends Fragment {
         // Inflate the layout for this fragment
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
     }
 
     private void startSearch(String text) {

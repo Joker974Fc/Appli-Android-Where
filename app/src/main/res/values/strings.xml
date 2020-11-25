@@ -1,14 +1,29 @@
 <resources>
     <string name="app_name">Where</string>
     <string name="home">Home</string>
-    <string name="dashboard">Dashboard</string>
+    <string name="dashboard">Map</string>
     <string name="favorite">Favorite</string>
-    <string name="un_magasin">Un Magasin</string>
-    <string name="un_produit">Un Produit</string>
-    <string name="je_recherche">JE CHERCHE:</string>
+    <string name="un_magasin">A Store</string>
+    <string name="un_produit">A Product</string>
+    <string name="je_recherche">I\'M LOOKING:</string>
     <string name="saint_denis">Saint-Denis</string>
     <string name="les_cirques">Les Cirques</string>
     <string name="add_favorite">add favorite</string>
-    <string name="par_secteur">RECHERCHE PAR SECTEUR:</string>
+    <string name="par_secteur">SEARCH BY SECTOR:</string>
     <string name="search">Search</string>
+    <string name="error1">error permission map</string>
+    <string name="Close">Press back again to close app</string>
+
+    <string name="empreintePlace">Please Use Authentification for open this section</string>
+    <string name="authentification">Authentificate</string>
+    <string name="TBio">Biometric login for my app</string>
+    <string name="SubBio">Log in using your biometric credential</string>
+    <string name="camera">Camera</string>
+
+    <string name="avis">Your opinions :</string>
+    <string name="poster">Post notice</string>
+
+    <string name="poster_un_avis">Post a review</string>
+    <string name="avispub">Your opinion has been published!</string>
+    <string name="voire_les_avis">See the Opinions</string>
 </resources>

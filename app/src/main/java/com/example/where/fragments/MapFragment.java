@@ -127,7 +127,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         map = googleMap;
 
         //Lieux
-        LatLng AeroportR = new LatLng(-20.894131, 55.508253);
+        //LatLng AeroportR = new LatLng(-20.894131, 55.508253);
         LatLng Bout0 = new LatLng(-20.886013, 55.456623);
         LatLng Bout1 = new LatLng(-20.875147, 55.452932);
         LatLng Bout3 = new LatLng(-20.882044, 55.460614);
@@ -136,13 +136,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         LatLng Bout2 = new LatLng(-20.931888, 55.334069);
         LatLng Bout4 = new LatLng(-20.942750, 55.330679);
 
+        LatLng def = new LatLng(-20.942750, 55.330679);
+
+        /*String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", 28.43242324,77.8977673);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(intent);*/
+
 
 
 
 
 
         //ajout
-        map.addMarker(new MarkerOptions().position(AeroportR).title("Aeroport de La Reunion Roland Garros"));
+       //map.addMarker(new MarkerOptions().position(AeroportR).title("Aeroport de La Reunion Roland Garros"));
         map.addMarker(new MarkerOptions().position(Bout0).title("Boutique 0").snippet("La vida loca"));
         map.addMarker(new MarkerOptions().position(Bout1).title("Boutique 1").snippet("Fruits et Légumes"));
         map.addMarker(new MarkerOptions().position(Bout3).title("Boutique 3").snippet("Fruits et Légumes"));
@@ -159,7 +165,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
         //default location
-        map.moveCamera(CameraUpdateFactory.newLatLng(AeroportR));
+        map.moveCamera(CameraUpdateFactory.newLatLng(Bout0));
         map.animateCamera(CameraUpdateFactory.zoomTo(10));
 
         //setting

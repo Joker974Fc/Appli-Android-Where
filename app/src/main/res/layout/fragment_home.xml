@@ -84,6 +84,7 @@
                     android:layout_marginBottom="20dp"
                     android:text="@string/par_secteur"
                     android:textAppearance="@style/TextAppearance.Compat.Notification.Title"
+                    android:textColor="#0C0C0C"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -109,6 +110,7 @@
                     android:layout_marginBottom="20dp"
                     android:text="Saint-Denis"
                     android:textAppearance="@style/TextAppearance.Compat.Notification.Title"
+                    android:textColor="#070606"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -133,6 +135,7 @@
                     android:layout_marginBottom="20dp"
                     android:text="La Possesion"
                     android:textAppearance="@style/TextAppearance.Compat.Notification.Title"
+                    android:textColor="#0C0C0C"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -157,11 +160,30 @@
                     android:layout_marginBottom="20dp"
                     android:text="Le Port"
                     android:textAppearance="@style/TextAppearance.Compat.Notification.Title"
+                    android:textColor="#090909"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.04" />
+
+                <View style="@style/Divider.Horizontal"/>
+
+                <TextView
+                    android:text="@string/poster_un_avis"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageButton
+                    android:id="@+id/cam"
+                    android:layout_margin="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_camera_alt_24"
+                    android:onClick="cam"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 

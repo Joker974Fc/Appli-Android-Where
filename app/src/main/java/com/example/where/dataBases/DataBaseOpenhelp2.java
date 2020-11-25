@@ -32,6 +32,7 @@ public class DataBaseOpenhelp2 extends SQLiteOpenHelper {
 
     }*/
 
+    //DB Avis
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + AvisCont.AvisEntry.TABLE_NAME + " (" +
                     AvisCont.AvisEntry._ID + INTEGER_TYPE + " PRIMARY KEY" + COMMA_SEP +
@@ -56,6 +57,7 @@ public class DataBaseOpenhelp2 extends SQLiteOpenHelper {
 
     }
 
+    //affiche
     public Cursor readAllAvis() {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -70,6 +72,7 @@ public class DataBaseOpenhelp2 extends SQLiteOpenHelper {
         );
     }
 
+    //ajout
     public boolean addAvis(Avis avis) {
         SQLiteDatabase db = getWritableDatabase();
 

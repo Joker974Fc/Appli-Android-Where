@@ -10,7 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 //Splash Screen
 //ecran de chargement
-public class SplashActivity extends Activity {
+public class
+SplashActivity extends Activity {
     private static int time=1500;
 
     @Override

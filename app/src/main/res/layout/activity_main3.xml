@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="seeavis"
-        android:text="Avis"
+        android:text="@string/voire_les_avis"
         tools:ignore="OnClick"
         tools:targetApi="lollipop" />
 
@@ -41,7 +41,7 @@
         android:layout_margin="10dp"
         android:layout_gravity="center"
         android:layout_width="300dp"
-        android:layout_height="50dp"/>
+        android:layout_height="100dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

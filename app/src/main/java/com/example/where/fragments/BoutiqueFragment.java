@@ -1,24 +1,25 @@
 package com.example.where.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.where.adapter.ProduitAdapter;
-import com.example.where.adapter.ProduitAdapter2;
-import com.example.where.object.Boutique;
-import com.example.where.adapter.BoutiqueAdapter;
-import com.example.where.dataBases.DataBaseOpenhelp;
 import com.example.where.R;
+import com.example.where.adapter.BoutiqueAdapter;
+import com.example.where.adapter.ProduitAdapter2;
+import com.example.where.dataBases.DataBaseOpenhelp;
+import com.example.where.object.Boutique;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,9 @@ public class BoutiqueFragment extends Fragment {
     private BoutiqueAdapter mAdapt2;
     public List<Boutique> fav;
     private DataBaseOpenhelp data;
+
+
+    boolean tapped;
 
 
 
@@ -97,6 +101,8 @@ public class BoutiqueFragment extends Fragment {
 
 
 
+
+
         registerForContextMenu(mRecycle);
 
 
@@ -111,6 +117,8 @@ public class BoutiqueFragment extends Fragment {
         mRecycle = view.findViewById(R.id.recycle1);
         registerForContextMenu(mRecycle);
     }
+
+
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
@@ -128,9 +136,17 @@ public class BoutiqueFragment extends Fragment {
                 return true;
             case R.id.action_delete:
                data.deletFav(name);
+
+
+
+
         }
         return super.onContextItemSelected(item);
     }
+
+
+
+
 
 
 

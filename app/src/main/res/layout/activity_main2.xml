@@ -22,6 +22,7 @@
 
     <TextView
         android:id="@+id/textView3"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empreintePlace"
@@ -37,6 +38,7 @@
         android:id="@+id/auth"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:text="@string/authentification"
         android:textColor="#0E0D0D"

@@ -28,6 +28,7 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
 
     }
 
+
     //get all boutique
     public List<Boutique> getBoutique(){
         SQLiteDatabase db = getReadableDatabase();
@@ -313,7 +314,7 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
     }
 
     // get all Avis
-
+/*
     public List<Avis> getAvis(){
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
@@ -339,6 +340,6 @@ public class DataBaseOpenhelp extends SQLiteAssetHelper {
         }
         return result;
 
-    }
+    }*/
 
 }
