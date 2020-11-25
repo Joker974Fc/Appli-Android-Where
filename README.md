@@ -56,3 +56,8 @@ de l’utilisateur. L'utilisation des cartes sera très favorablement apprécié
 (double tap, balayage…)
 
 ⁃ Appareil photo
+
+##Ressources
+Lien vers la version IOS:  https://gitlab.com/ludo_g/devmobilel3
+
+[Slide M1](SlideWhere2020)
